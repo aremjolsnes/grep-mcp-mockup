@@ -16,6 +16,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from mcp.server.fastmcp import FastMCP
 from sparql import hent_kompetansemaal, sok_kompetansemaal
+from case_adapter import to_cfitem, to_cfdocument
 
 mcp = FastMCP("grep-mcp")
 
@@ -71,6 +72,32 @@ def grep_sok_kompetansemaal(fritekst: str, maks_treff: int = 10) -> list[dict]:
         }
         for r in raw
     ]
+
+
+@mcp.tool()
+def grep_hent_cfitems(laereplan_kode: str, trinn: str) -> dict:
+    """
+    Henter kompetansemål fra Grep og returnerer dem i CASE CFItem-format.
+
+    Args:
+        laereplan_kode: Læreplan-kode, f.eks. 'SAF01-04'. Tom streng gir alle læreplaner.
+        trinn: Trinn, f.eks. '10' eller '7'. Tom streng gir alle trinn.
+
+    Returns:
+        Et CASE CFDocument med tilhørende CFItem-er. Strukturen følger
+        1EdTech CASE-standarden (Competencies & Academic Standards Exchange).
+        Hvert CFItem inneholder:
+        - identifier: URI til kompetansemålet
+        - humanCodingScheme: Kompetansemålkode (f.eks. KM1638)
+        - fullStatement: Kompetansemålstekst
+        - educationLevel: Liste med trinnbeskrivelse
+        - CFDocumentURI: Referanse til læreplan (identifier + title)
+    """
+    raw = hent_kompetansemaal(laereplan_kode, trinn)
+    cfitems = [to_cfitem(r) for r in raw]
+
+    tittel = raw[0].get("currTitle", {}).get("value", laereplan_kode) if raw else laereplan_kode
+    return to_cfdocument(laereplan_kode, tittel, cfitems)
 
 
 if __name__ == "__main__":
