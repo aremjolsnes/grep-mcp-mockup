@@ -57,19 +57,19 @@ topic: [Grep, CASE, RAG]
 
 ### Hovedelementene
 
-- **Fagkode** (f.eks. SAF1-04) – identifiserer faget
+- **Fagkode** (f.eks. SAF01-04) – identifiserer faget
 - **Læreplan** – ett fastsatt dokument per fag og program
-- **Kompetansemål** – hva elever skal kunne (kodene: f.eks. KM7817)
+- **Kompetansemål** – hva elever skal kunne (kodene: f.eks. KM1648)
 - **Kjerneelement** – sentrale idéer og konsepter innenfor faget
 - **Læringsressurser** – koblinger til fagmateriale
 
 ### Eksempel: En konkret norsk læreplan
 
-- Fagkode: SAF1-04 (Samfunnsfag, LK20)
+- Fagkode: SAF01-04 (Samfunnsfag, LK20)
 - Læreplan-dokument: inneholder alle kompetansemål for dette faget og programmet
-- Ett kompetansemål: KM7817
-  - Har kode (KM7817), tekst, tilhørende kjerneelement, trinn
-  - Eksempel: «Utforske korleis politiske system og demokratiske institusjonar verkar, nasjonalt og internasjonalt»
+- Ett kompetansemål: KM1648
+  - Har kode (KM1648), tekst, tilhørende kjerneelement, trinn
+  - Eksempel: «Reflektere over kva for aktørar som har makt i samfunnet i dag, og korleis desse grunngir standpunkta sine»
   - Strukturen gjør det mulig å søke og kople data
 
 ### Hvordan får vi det ut?
@@ -139,14 +139,31 @@ Demonstrasjonen viser tre lag i kombinasjon:
 
 | Lag | Teknologi | Hva det gjør |
 |---|---|---|
-| 1 – Fagdata | Grep via SPARQL | Henter eksakte kompetansemål for SAF1-04, 10. trinn |
+| 1 – Fagdata | Grep via SPARQL | Henter eksakte kompetansemål for SAF01-04, 10. trinn |
 | 2 – Protokoll | MCP-server | Eksponerer Grep som et AI-verktøy; kan oversette til CASE |
 | 3 – Brukerkontekst | Learner Context (simulert) | Filtrerer og tilpasser svar til konkret elev/trinn/program |
 
-**Konkret demo-scenario:**
+**Konkret demo-scenario – tre steg:**
+
 > En lærer på 10. trinn spør: «Hvilke kompetansemål i samfunnsfag er relevante for et prosjekt om demokrati og valg?»
-> - Uten Learner Context: AI lister alle 19 KM for 10. trinn
-> - Med Learner Context: AI vet at klassen er på 10. trinn, har allerede jobbet med menneskerettigheter (KM7815), og peker direkte på KM7817 og KM7819 som de mest relevante neste stegene
+
+**Steg 1 – Uten Learner Context:**
+AI kaller `grep_hent_kompetansemaal("SAF01-04", "10")` og får alle 19 KM.
+Svaret er korrekt, men generisk – AI vet ikke hva klassen har jobbet med.
+
+**Steg 2 – Med Learner Context:**
+Læreren legger inn brukerprofil i prompten:
+```json
+{ "rolle": "lærer", "trinn": "10", "fag": "SAF01-04",
+  "gjennomgaatt": ["KM1638", "KM1640", "KM1643"] }
+```
+AI kaller samme verktøy, men tilpasser svaret: peker direkte på
+**KM1648** (makt i samfunnet) og **KM1652** (politisk system) som neste relevante steg.
+
+**Steg 3 – CASE-format:**
+AI kaller `grep_hent_cfitems("SAF01-04", "10")` og returnerer samme data
+strukturert som CASE CFDocument med CFItems – klar for interoperabilitet med
+internasjonale systemer. Ingen endringer i Grep.
 
 ---
 
@@ -169,7 +186,7 @@ Demonstrasjonen viser tre lag i kombinasjon:
 ### Konkret eksempel: Nevada vs. Norge
 
 - Nevada, USA: «Social Studies, Grade 9–12, Civics, Standard 1: Understand the U.S. Constitution» (SS.9-12.CE.1)
-- Norge: «Samfunnsfag, ungdomstrinnet, SAF1-04/KM7817: Utforske korleis politiske system og demokratiske institusjonar verkar, nasjonalt og internasjonalt»
+- Norge: «Samfunnsfag, ungdomstrinnet, SAF01-04/KM1652: Beskrive trekk ved det politiske systemet og velferdssamfunnet i Noreg i dag og reflektere over sentrale utfordringar»
 - CASE gjør det mulig å si: «Disse to kompetansemålene dekker lignende forståelse av demokratiske institusjoner og styresett»
 - Gir grunnlag for:
   - Internasjonal kartlegging av kompetanser
@@ -202,7 +219,7 @@ Demonstrasjonen viser tre lag i kombinasjon:
 ### Med CASE
 
 - Begge systemer, hvis koblet til CASE, kan sees på samme «språk»
-- System kan automatisk sjekke: «Matcher Nevada SS.9-12.CE.1 norske SAF1-04/KM7817?»
+- System kan automatisk sjekke: «Matcher Nevada SS.9-12.CE.1 norske SAF01-04/KM1652?»
 - Gir grunnlag for raskere godkjenning og samarbeid
 
 ---
