@@ -1,0 +1,96 @@
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix u:    <http://psi.udir.no/ontologi/kl06/> .
+@prefix case: <https://purl.imsglobal.org/spec/case/v1p0/vocab#> .
+
+# =============================================================================
+# CASE-broaksiomer: Grep → CASE (Competencies & Academic Standards Exchange)
+#
+# Denne filen definerer koblingen mellom Grep-ontologien og CASE-standarden
+# fra 1EdTech (tidligere IMS Global). Lastes inn etter grep_ontologi.ttl.
+#
+# CASE-standarden: https://www.imsglobal.org/activity/case
+# Versjon: 0.1 (første iterasjon)
+# =============================================================================
+
+<https://github.com/udir/grep-mcp-mockup/ontologi/grep-case-mapping>
+    a owl:Ontology ;
+    rdfs:label "Grep–CASE broontologi (grep-mcp-mockup)"@nb ;
+    dct:description """
+        Definerer koblingen mellom Grep-ontologien og CASE-standarden
+        (Competencies & Academic Standards Exchange) fra 1EdTech.
+        Målet er å vise at Grep-data kan eksponeres i CASE-format
+        uten å endre selve Grep-strukturen.
+    """@nb ;
+    owl:imports <https://github.com/udir/grep-mcp-mockup/ontologi/grep> ;
+    owl:versionInfo "0.1" .
+
+
+# =============================================================================
+# KLASSEKOBLINGER
+# =============================================================================
+
+# Læreplan ≈ CFDocument
+# En CASE CFDocument representerer et komplett læreplan-dokument,
+# tilsvarende Greps Laereplan.
+u:Laereplan
+    owl:equivalentClass case:CFDocument ;
+    skos:exactMatch case:CFDocument ;
+    rdfs:comment """
+        En Grep-læreplan (f.eks. SAF01-04) tilsvarer et CASE CFDocument –
+        den øverste beholderen for et sett med kompetansestandarder.
+    """@nb .
+
+# Kompetansemål ≈ CFItem
+# Et CASE CFItem representerer ett enkelt kompetansemål eller standard.
+u:Kompetansemaal
+    owl:equivalentClass case:CFItem ;
+    skos:exactMatch case:CFItem ;
+    rdfs:comment """
+        Et Grep-kompetansemål tilsvarer et CASE CFItem – den atomære
+        enheten som beskriver hva en elev skal mestre.
+    """@nb .
+
+# Kompetansemålsett ≈ CFPackage (tilnærmet)
+# CASE CFPackage er en beholder for relaterte CFItem-er.
+# Kompetansemålsett er ikke identisk, men fyller samme rolle som gruppering.
+u:Kompetansemaalsett
+    skos:closeMatch case:CFPackage ;
+    rdfs:comment """
+        Et Grep-kompetansemålsett grupperer kompetansemål for et gitt trinn,
+        tilsvarende et CASE CFPackage. Koblingen er tilnærmet (closeMatch)
+        fordi trinn-dimensjonen ikke har direkte ekvivalent i CASE.
+    """@nb .
+
+
+# =============================================================================
+# EGENSKAPSKOBLINGER
+# =============================================================================
+
+# u:kode ≈ case:humanCodingScheme
+# CASE bruker humanCodingScheme for den menneskelig lesbare koden,
+# f.eks. 'SAF01-04' eller 'KM1638'.
+u:kode
+    skos:exactMatch case:humanCodingScheme ;
+    rdfs:comment "Grep-kode tilsvarer CASE humanCodingScheme."@nb .
+
+# u:tittel ≈ case:fullStatement
+# CASE bruker fullStatement for den fulle teksten til et kompetansemål.
+# For læreplaner tilsvarer det dct:title i CASE.
+u:tittel
+    skos:exactMatch case:fullStatement ;
+    rdfs:comment """
+        Grep-tittel på et kompetansemål tilsvarer CASE fullStatement.
+        For læreplaner er koblingen til case:CFDocument-tittel via dct:title.
+    """@nb .
+
+# u:kortform – ingen direkte CASE-ekvivalent
+# Kortform brukes kun for årstrinn i Grep og har ikke en etablert
+# CASE-ekvivalent. Dokumenteres som uavklart.
+u:kortform
+    skos:note """
+        Ingen direkte CASE-ekvivalent. Brukes internt i Grep for å angi
+        trinn som tall (f.eks. '10'), men inngår ikke i CASE-modellen.
+    """@nb .

@@ -1,0 +1,14 @@
+{
+  "rolle": "lærer",
+  "trinn": "10",
+  "fag": "SAF01-04",
+  "gjennomgaatt": ["KM1638", "KM1640", "KM1643"],
+  "kommentar": {
+    "KM1638": "utforske korleis teknologi har vore og framleis er ein endringsfaktor",
+    "KM1640": "samanlikne korleis politiske, geografiske og historiske forhold påverkar levekår",
+    "KM1643": "reflektere over likskapar og ulikskapar i identitetar og mangfald",
+    "neste_relevante": ["KM1648", "KM1652"],
+    "KM1648": "reflektere over kva for aktørar som har makt i samfunnet i dag",
+    "KM1652": "beskrive trekk ved det politiske systemet og velferdssamfunnet i Noreg i dag"
+  }
+}

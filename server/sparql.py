@@ -48,7 +48,8 @@ class GrepSparqlClient:
             Exception: If query fails
         """
         try:
-            # URL encode the query
+            logger.info(f"Querying SPARQL endpoint")
+# URL encode the query
             params = {'query': sparql_query}
             url = f"{self.repository_url}?{urlencode(params)}"
 
@@ -74,36 +75,67 @@ class GrepSparqlClient:
             logger.error(f"JSON decode error: {e}")
             raise Exception(f"Invalid JSON response from SPARQL endpoint: {e}")
 
-    def get_competence_aims(self, subject_code: str, grade: str) -> List[Dict[str, Any]]:
+    def get_competence_aims(self, curriculum_code: str, grade: str) -> List[Dict[str, Any]]:
         """
-        Get competence aims for a specific subject and grade.
+        Get competence aims for a specific curriculum and grade.
 
         Args:
-            subject_code: Subject code (e.g., 'SAF1-04')
-            grade: Grade level (e.g., '10')
+            curriculum_code: Curriculum code used as URI suffix, e.g. 'SAF01-04'.
+                             Resolves to <http://psi.udir.no/kl06/SAF01-04>.
+                             Pass empty string for no curriculum filtering.
+            grade: Grade short form (e.g. '10') or label (e.g. '10. trinn').
+                   Pass empty string for no grade filtering.
 
         Returns:
             List of competence aims with their details
         """
+        curriculum_filter = (
+            f"FILTER (?curriculum = d:{curriculum_code})"
+            if curriculum_code
+            else ""
+        )
+        grade_filter = (
+            f"""FILTER (
+                CONTAINS(str(?gradeShort), "{grade}") ||
+                CONTAINS(str(?gradeLabel), "{grade}")
+            )"""
+            if grade
+            else ""
+        )
+
         query = f"""
-        PREFIX dct: <http://purl.org/dc/terms/>
-        PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-        PREFIX grep: <http://psi.udir.no/ontologi/kl06/>
+        PREFIX u: <http://psi.udir.no/ontologi/kl06/>
+        PREFIX d: <http://psi.udir.no/kl06/>
 
-        SELECT ?km_code ?title ?description
+        SELECT ?km ?kmCode ?title ?kms ?kmsTitle ?grade ?gradeLabel ?gradeShort ?curriculum ?currTitle
         WHERE {{
-            ?km a grep:Kompetansemaal ;
-                grep:harKode ?km_code ;
-                skos:prefLabel ?title ;
-                dct:description ?description ;
-                grep:tilhoererLaereplan ?lp .
+            ?km a u:kompetansemaal_lk20 ;
+                u:kode ?kmCode ;
+                u:tittel ?title ;
+                u:tilhoerer-kompetansemaalsett ?kms ;
+                u:tilhoerer-laereplan ?curriculum .
 
-            ?lp grep:harKode "{subject_code}" .
+            {curriculum_filter}
 
-            ?km grep:gjelderForTrinn ?trinn .
-            ?trinn grep:harKode "{grade}" .
+            ?curriculum u:tittel ?currTitle .
+
+            ?kms u:etter-aarstrinn ?grade ;
+                 u:tittel ?kmsTitle .
+
+            ?grade u:tittel ?gradeLabel ;
+                   u:kortform ?gradeShort .
+
+            FILTER (
+                LANG(?title) = "default" &&
+                LANG(?kmsTitle) = "default" &&
+                LANG(?gradeLabel) = "default" &&
+                LANG(?gradeShort) = "default" &&
+                LANG(?currTitle) = "default"
+            )
+            {grade_filter}
         }}
-        ORDER BY ?km_code
+        ORDER BY ?kmCode
+        LIMIT 200
         """
 
         results = self.query(query)
@@ -154,19 +186,17 @@ class GrepSparqlClient:
             List of matching competence aims
         """
         query = f"""
-        PREFIX dct: <http://purl.org/dc/terms/>
-        PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-        PREFIX grep: <http://psi.udir.no/ontologi/kl06/>
+        PREFIX u: <http://psi.udir.no/ontologi/kl06/>
 
-        SELECT ?km_code ?title ?description
+        SELECT ?km_code ?title
         WHERE {{
-            ?km a grep:Kompetansemaal ;
-                grep:harKode ?km_code ;
-                skos:prefLabel ?title ;
-                dct:description ?description .
+            ?km a u:kompetansemaal_lk20 ;
+                u:kode ?km_code ;
+                u:tittel ?searchTitle ;
+                u:tittel ?title .
 
-            FILTER(CONTAINS(LCASE(?title), LCASE("{search_term}")) ||
-                   CONTAINS(LCASE(?description), LCASE("{search_term}")))
+            FILTER (CONTAINS(LCASE(str(?searchTitle)), LCASE("{search_term}")))
+            FILTER (LANG(?title) = "default")
         }}
         ORDER BY ?km_code
         LIMIT {limit}
@@ -179,9 +209,9 @@ class GrepSparqlClient:
 client = GrepSparqlClient()
 
 # Convenience functions for easy access
-def hent_kompetansemaal(fagkode: str, trinn: str) -> List[Dict[str, Any]]:
-    """Hent kompetansemål for gitt fag og trinn"""
-    return client.get_competence_aims(fagkode, trinn)
+def hent_kompetansemaal(laereplan_kode: str, trinn: str) -> List[Dict[str, Any]]:
+    """Hent kompetansemål for gitt læreplan-kode (f.eks. 'SAF01-04') og trinn"""
+    return client.get_competence_aims(laereplan_kode, trinn)
 
 def hent_laereplan(fagkode: str) -> Dict[str, Any]:
     """Hent lærerplan for gitt fagkode"""
@@ -198,10 +228,10 @@ if __name__ == "__main__":
         results = client.query("SELECT ?s WHERE { ?s ?p ?o } LIMIT 1")
         print("✅ SPARQL endpoint is accessible")
 
-        # Test competence aims query (will fail if no data, but shows query structure)
+        # Test competence aims query
         try:
-            aims = hent_kompetansemaal("SAF1-04", "10")
-            print(f"Found {len(aims)} competence aims for SAF1-04 grade 10")
+            aims = hent_kompetansemaal("SAF01-04", "10")
+            print(f"Found {len(aims)} competence aims for SAF01-04 grade 10")
         except Exception as e:
             print(f"Query executed but no data found (expected if GraphDB not loaded yet): {e}")
 

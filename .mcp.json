@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "grep": {
+      "command": "C:/Users/AMJ/git/grep-sandkasse/grep-mcp-mockup/venv/Scripts/python.exe",
+      "args": ["C:/Users/AMJ/git/grep-sandkasse/grep-mcp-mockup/server/main.py"]
+    }
+  }
+}

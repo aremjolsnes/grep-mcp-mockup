@@ -1,0 +1,293 @@
+s,label,comment
+http://psi.udir.no/ontologi/kl06/benyttes-paa-aarstrinn,benyttes på årstrinn,Egenskap for kompetansemålsett for å angi hvilke(t) årstrinn det benyttes på
+http://psi.udir.no/ontologi/kl06/benyttes-paa-aarstrinn,benyttes på årstrinn,"Property for ""kompetansemaalsett"" (competence aim set) to specify which ""aarstrinn"" (year level(s)) it is used for"
+http://psi.udir.no/ontologi/kl06/benyttes-paa-aarstrinn,taught in year levels,Egenskap for kompetansemålsett for å angi hvilke(t) årstrinn det benyttes på
+http://psi.udir.no/ontologi/kl06/benyttes-paa-aarstrinn,taught in year levels,"Property for ""kompetansemaalsett"" (competence aim set) to specify which ""aarstrinn"" (year level(s)) it is used for"
+http://psi.udir.no/ontologi/kl06/benyttes-sammen-med,benyttes sammen med,"Attribute for ""fagkode"" (subject code) that shows which other subject codes that are part of the overall assessment of the same subject (where there are several within the same ""opplaeringsfag"" (teaching subject))"
+http://psi.udir.no/ontologi/kl06/benyttes-sammen-med,benyttes sammen med,Egenskap for fagkode som viser hvilke andre fagkoder som inngår i helhetsvurderingen av samme fag (der det er flere innenfor samme opplaeringsfag)
+http://psi.udir.no/ontologi/kl06/benyttes-sammen-med,used together with,"Attribute for ""fagkode"" (subject code) that shows which other subject codes that are part of the overall assessment of the same subject (where there are several within the same ""opplaeringsfag"" (teaching subject))"
+http://psi.udir.no/ontologi/kl06/benyttes-sammen-med,used together with,Egenskap for fagkode som viser hvilke andre fagkoder som inngår i helhetsvurderingen av samme fag (der det er flere innenfor samme opplaeringsfag)
+http://psi.udir.no/ontologi/kl06/bygger-paa,based on,Attribute to competence aims to specify progression between competence aims
+http://psi.udir.no/ontologi/kl06/bygger-paa,based on,Egenskap for kompetansemål for angi progresjon mellom kompetansemål
+http://psi.udir.no/ontologi/kl06/bygger-paa,bygger på,Attribute to competence aims to specify progression between competence aims
+http://psi.udir.no/ontologi/kl06/bygger-paa,bygger på,Egenskap for kompetansemål for angi progresjon mellom kompetansemål
+http://psi.udir.no/ontologi/kl06/bygger-paa-fag,based on subject(s),Egenskap for fagkode og opplæringsfag for å angi hvilken av samme type som dette elementet bygger på
+http://psi.udir.no/ontologi/kl06/bygger-paa-fag,based on subject(s),"Property for ""fagkode"" (subject code) and ""opplaeringsfag"" (teaching subject) to specify on which of the same type this specific item is based"
+http://psi.udir.no/ontologi/kl06/bygger-paa-fag,bygger på fag,Egenskap for fagkode og opplæringsfag for å angi hvilken av samme type som dette elementet bygger på
+http://psi.udir.no/ontologi/kl06/bygger-paa-fag,bygger på fag,"Property for ""fagkode"" (subject code) and ""opplaeringsfag"" (teaching subject) to specify on which of the same type this specific item is based"
+http://psi.udir.no/ontologi/kl06/bygger-paa-programomraade,based on programme area,Egenskap for programområde som angir hvilke(t) programområde(r) programområdet bygger på
+http://psi.udir.no/ontologi/kl06/bygger-paa-programomraade,based on programme area,"Property for ""programomraade"" (programme area) indicating what/which programme area(s) the programme area is based"
+http://psi.udir.no/ontologi/kl06/bygger-paa-programomraade,bygger på programområde,Egenskap for programområde som angir hvilke(t) programområde(r) programområdet bygger på
+http://psi.udir.no/ontologi/kl06/bygger-paa-programomraade,bygger på programområde,"Property for ""programomraade"" (programme area) indicating what/which programme area(s) the programme area is based"
+http://psi.udir.no/ontologi/kl06/dokumenttype,document type,Egenskap for merknad for å angi om den gjelder for enten “Vitnemål” eller “Kompetansebevis”
+http://psi.udir.no/ontologi/kl06/dokumenttype,document type,"Property for notice (""merknad"") to specify whether it applies to either ""diploma"" or ""certificate of competence/vocational training certificate"""
+http://psi.udir.no/ontologi/kl06/dokumenttype,dokumenttype,Egenskap for merknad for å angi om den gjelder for enten “Vitnemål” eller “Kompetansebevis”
+http://psi.udir.no/ontologi/kl06/dokumenttype,dokumenttype,"Property for notice (""merknad"") to specify whether it applies to either ""diploma"" or ""certificate of competence/vocational training certificate"""
+http://psi.udir.no/ontologi/kl06/erstatter,erstatter,Egenskap for flere typer elementer for å angi hvilke(t) element(er) av samme type dette elementet erstatter
+http://psi.udir.no/ontologi/kl06/erstatter,erstatter,Property for several types of elements to specify which element(s) of same type this element replaces
+http://psi.udir.no/ontologi/kl06/erstatter,replaces,Egenskap for flere typer elementer for å angi hvilke(t) element(er) av samme type dette elementet erstatter
+http://psi.udir.no/ontologi/kl06/erstatter,replaces,Property for several types of elements to specify which element(s) of same type this element replaces
+http://psi.udir.no/ontologi/kl06/erstattes-av,erstattes av,Egenskap for flere typer elementer for å angi hvilke(t) element(er) dette elementet er erstattet av
+http://psi.udir.no/ontologi/kl06/erstattes-av,erstattes av,Property for several type elements to specify which element(s) this element is replaced by
+http://psi.udir.no/ontologi/kl06/erstattes-av,replaced by,Egenskap for flere typer elementer for å angi hvilke(t) element(er) dette elementet er erstattet av
+http://psi.udir.no/ontologi/kl06/erstattes-av,replaced by,Property for several type elements to specify which element(s) this element is replaced by
+http://psi.udir.no/ontologi/kl06/etter-aarstrinn,achieved after year level,"Egenskap for ""kompetansemaalsett"" for å angi etter hvilket årstrinn kompetansen skal være oppnådd"
+http://psi.udir.no/ontologi/kl06/etter-aarstrinn,achieved after year level,"Property for ""kompetansemaalsett"" (competence aim set), indicating by what year the learner will have aquired the competences described by the set"
+http://psi.udir.no/ontologi/kl06/etter-aarstrinn,etter årstrinn,"Egenskap for ""kompetansemaalsett"" for å angi etter hvilket årstrinn kompetansen skal være oppnådd"
+http://psi.udir.no/ontologi/kl06/etter-aarstrinn,etter årstrinn,"Property for ""kompetansemaalsett"" (competence aim set), indicating by what year the learner will have aquired the competences described by the set"
+http://psi.udir.no/ontologi/kl06/etter-fag,achieved after subject,"Egenskap for kompetansemaalsett for å angi opplæringsfag som et samleuttrykk for den totale kompetansen som skal være oppnåd, knyttet til det refererte opplæringsfagets fagkode-referanser"
+http://psi.udir.no/ontologi/kl06/etter-fag,achieved after subject,"Property for ""kompetansemaalsett""/""kompetansemaalsett_lk20"" (competence-aim-set) to specify teaching-subject as a collective expression for the total competence that must be achieved in connection with the subject training subject's ""fagkode"" (subject-code) references"
+http://psi.udir.no/ontologi/kl06/etter-fag,etter fag,"Egenskap for kompetansemaalsett for å angi opplæringsfag som et samleuttrykk for den totale kompetansen som skal være oppnåd, knyttet til det refererte opplæringsfagets fagkode-referanser"
+http://psi.udir.no/ontologi/kl06/etter-fag,etter fag,"Property for ""kompetansemaalsett""/""kompetansemaalsett_lk20"" (competence-aim-set) to specify teaching-subject as a collective expression for the total competence that must be achieved in connection with the subject training subject's ""fagkode"" (subject-code) references"
+http://psi.udir.no/ontologi/kl06/fagkategori,Fagkategori,"Attribute for ""fagomraade"" (subject area) to specify a hierarchically parent academic content category (for statistical purposes)"
+http://psi.udir.no/ontologi/kl06/fagkategori,Fagkategori,Egenskap for fagområde for å angi hierarkisk overordnet faglig innholdskategori (for statistisk bruk)
+http://psi.udir.no/ontologi/kl06/fagkategori,subject category,"Attribute for ""fagomraade"" (subject area) to specify a hierarchically parent academic content category (for statistical purposes)"
+http://psi.udir.no/ontologi/kl06/fagkategori,subject category,Egenskap for fagområde for å angi hierarkisk overordnet faglig innholdskategori (for statistisk bruk)
+http://psi.udir.no/ontologi/kl06/fagkode-referanser,fagkodereferanse(r),"Connection between ""opplaeringsfag"" (teaching subject) and ""fagkode"" (subject code)"
+http://psi.udir.no/ontologi/kl06/fagkode-referanser,fagkodereferanse(r),Kobling mellom fagkode og opplæringsfag
+http://psi.udir.no/ontologi/kl06/fagkode-referanser,subject code reference(s),"Connection between ""opplaeringsfag"" (teaching subject) and ""fagkode"" (subject code)"
+http://psi.udir.no/ontologi/kl06/fagkode-referanser,subject code reference(s),Kobling mellom fagkode og opplæringsfag
+http://psi.udir.no/ontologi/kl06/fagomraade-referanser,fagområdereferanse(r),"Connection between ""opplaeringsfag"" (teaching subject) and ""fagomraade"" (subject area)"
+http://psi.udir.no/ontologi/kl06/fagomraade-referanser,fagområdereferanse(r),Kobling mellom opplæringsfag og fagområde
+http://psi.udir.no/ontologi/kl06/fagomraade-referanser,subject area reference(s),"Connection between ""opplaeringsfag"" (teaching subject) and ""fagomraade"" (subject area)"
+http://psi.udir.no/ontologi/kl06/fagomraade-referanser,subject area reference(s),Kobling mellom opplæringsfag og fagområde
+http://psi.udir.no/ontologi/kl06/fagtype,fagtype,Grouping subjects according to Circular Udir-1-[a certain year]
+http://psi.udir.no/ontologi/kl06/fagtype,fagtype,Gruppering av fag etter Rundskriv Udir-1-[et gitt årstall]
+http://psi.udir.no/ontologi/kl06/fagtype,subject type,Grouping subjects according to Circular Udir-1-[a certain year]
+http://psi.udir.no/ontologi/kl06/fagtype,subject type,Gruppering av fag etter Rundskriv Udir-1-[et gitt årstall]
+http://psi.udir.no/ontologi/kl06/fastsatt-spraak,determination language,"Attribute for ""laereplan"" and ""laereplan_lk20"" (curriculum) to specify the original language / language form for the curriculum"
+http://psi.udir.no/ontologi/kl06/fastsatt-spraak,determination language,"Egenskap for ""laereplan"" og ""laereplan_lk20"" for å angi hvilket språk/målform læreplanen er fastsatt på"
+http://psi.udir.no/ontologi/kl06/fastsatt-spraak,fastsatt-språk,"Attribute for ""laereplan"" and ""laereplan_lk20"" (curriculum) to specify the original language / language form for the curriculum"
+http://psi.udir.no/ontologi/kl06/fastsatt-spraak,fastsatt-språk,"Egenskap for ""laereplan"" og ""laereplan_lk20"" for å angi hvilket språk/målform læreplanen er fastsatt på"
+http://psi.udir.no/ontologi/kl06/foerste-semester,first semester,Egenskap som brukes av flere grep-typer for å angi første mulige semester elementet gjelder for
+http://psi.udir.no/ontologi/kl06/foerste-semester,first semester,"Property used by several grep-types to enter the first possible ""semester"" the element applies"
+http://psi.udir.no/ontologi/kl06/foerste-semester,første semester,Egenskap som brukes av flere grep-typer for å angi første mulige semester elementet gjelder for
+http://psi.udir.no/ontologi/kl06/foerste-semester,første semester,"Property used by several grep-types to enter the first possible ""semester"" the element applies"
+http://psi.udir.no/ontologi/kl06/for-aarstrinn,applies to year level,Egenskap for opplæringsfag for å angi hvilket årstrinn det gjelder for
+http://psi.udir.no/ontologi/kl06/for-aarstrinn,applies to year level,"Property for ""opplæringsfag"" (teaching subject) to specify which teaching level it applies"
+http://psi.udir.no/ontologi/kl06/for-aarstrinn,for årstrinn,Egenskap for opplæringsfag for å angi hvilket årstrinn det gjelder for
+http://psi.udir.no/ontologi/kl06/for-aarstrinn,for årstrinn,"Property for ""opplæringsfag"" (teaching subject) to specify which teaching level it applies"
+http://psi.udir.no/ontologi/kl06/fortsetter-opplaering-i-samme-kompetansemaalsett-som,continuing training in same competence aim set as,Egenskap for opplæringsfag for å angi forrige opplæringsfag innenfor samme kompetansemålsett
+http://psi.udir.no/ontologi/kl06/fortsetter-opplaering-i-samme-kompetansemaalsett-som,continuing training in same competence aim set as,"Property for ""opplaeringsfag"" (teaching subject) to enter the previous ""opplaeringsfag"" within the same ""kompetansemaalsett"" (competence aim set)"
+http://psi.udir.no/ontologi/kl06/fortsetter-opplaering-i-samme-kompetansemaalsett-som,fortsetter opplæring i samme kompetansemålsett som,Egenskap for opplæringsfag for å angi forrige opplæringsfag innenfor samme kompetansemålsett
+http://psi.udir.no/ontologi/kl06/fortsetter-opplaering-i-samme-kompetansemaalsett-som,fortsetter opplæring i samme kompetansemålsett som,"Property for ""opplaeringsfag"" (teaching subject) to enter the previous ""opplaeringsfag"" within the same ""kompetansemaalsett"" (competence aim set)"
+http://psi.udir.no/ontologi/kl06/gjenbruk-av,gjenbruk av,Egenskap for kompetansemaal_lk20 for å angi hvilket kompetansemål (LK20) fra forrige læreplanrevisjon dette er gjenbruk av
+http://psi.udir.no/ontologi/kl06/gjenbruk-av,gjenbruk av,Property for competence aims in lk20 to indicate which competence aim (LK20) from the previous curriculum revision this is reuse of
+http://psi.udir.no/ontologi/kl06/gjenbruk-av,reuse of,Egenskap for kompetansemaal_lk20 for å angi hvilket kompetansemål (LK20) fra forrige læreplanrevisjon dette er gjenbruk av
+http://psi.udir.no/ontologi/kl06/gjenbruk-av,reuse of,Property for competence aims in lk20 to indicate which competence aim (LK20) from the previous curriculum revision this is reuse of
+http://psi.udir.no/ontologi/kl06/grunnleggende-ferdigheter,basic skillls,"Egenskap for ""laereplan_lk20"" (LK20-læreplaner) for å referere til læreplanens grunnleggende ferdigheter"
+http://psi.udir.no/ontologi/kl06/grunnleggende-ferdigheter,basic skillls,"Property for ""laereplan_lk20"" (LK20 Curricula) to refer to the curriculum's basic skills"
+http://psi.udir.no/ontologi/kl06/grunnleggende-ferdigheter,grunnleggende ferdigheter,"Egenskap for ""laereplan_lk20"" (LK20-læreplaner) for å referere til læreplanens grunnleggende ferdigheter"
+http://psi.udir.no/ontologi/kl06/grunnleggende-ferdigheter,grunnleggende ferdigheter,"Property for ""laereplan_lk20"" (LK20 Curricula) to refer to the curriculum's basic skills"
+http://psi.udir.no/ontologi/kl06/hovedomraader,hovedområder,"Egenskap for ""laereplan"" (LK06) for å referere til læreplanens hovedområder"
+http://psi.udir.no/ontologi/kl06/hovedomraader,hovedområder,"Property for ""laereplan"" (curriculum) (LK06) to refer to the curriculum's main areas"
+http://psi.udir.no/ontologi/kl06/hovedomraader,main areas,"Egenskap for ""laereplan"" (LK06) for å referere til læreplanens hovedområder"
+http://psi.udir.no/ontologi/kl06/hovedomraader,main areas,"Property for ""laereplan"" (curriculum) (LK06) to refer to the curriculum's main areas"
+http://psi.udir.no/ontologi/kl06/hovedomraader-i-kontekst-av-kompetansemaalsett,hovedområder i kontekst av kompetansemålsett,Egenskap for kompetansemålsett for å angi hvilke hovedområder det inneholder
+http://psi.udir.no/ontologi/kl06/hovedomraader-i-kontekst-av-kompetansemaalsett,hovedområder i kontekst av kompetansemålsett,Property for competence aim set to indicate which main areas it contains
+http://psi.udir.no/ontologi/kl06/hovedomraader-i-kontekst-av-kompetansemaalsett,main areas in the context of competence aim set,Egenskap for kompetansemålsett for å angi hvilke hovedområder det inneholder
+http://psi.udir.no/ontologi/kl06/hovedomraader-i-kontekst-av-kompetansemaalsett,main areas in the context of competence aim set,Property for competence aim set to indicate which main areas it contains
+http://psi.udir.no/ontologi/kl06/kjerneelementer,core elements,"Egenskap for ""laereplan_lk20"" for å angi hvilke kjerneelemeter det har"
+http://psi.udir.no/ontologi/kl06/kjerneelementer,core elements,"Property for ""laereplan_lk20"" (curriculum_lk20) to indicate what core elements it has"
+http://psi.udir.no/ontologi/kl06/kjerneelementer,kjerneelementer,"Egenskap for ""laereplan_lk20"" for å angi hvilke kjerneelemeter det har"
+http://psi.udir.no/ontologi/kl06/kjerneelementer,kjerneelementer,"Property for ""laereplan_lk20"" (curriculum_lk20) to indicate what core elements it has"
+http://psi.udir.no/ontologi/kl06/kompetansemaalsett,kompetansemålsett,Egenskap for 'Laereplan' og 'Laereplan_lk20' for å angi hvilke kompetansemålsett den består av
+http://psi.udir.no/ontologi/kl06/kompetansemaalsett,kompetansemålsett,Property for 'Laereplan' and 'Laereplan_lk20' to indicate which competency aim set it consists of
+http://psi.udir.no/ontologi/kl06/kompetansemaalsett,kompetence aim set,Egenskap for 'Laereplan' og 'Laereplan_lk20' for å angi hvilke kompetansemålsett den består av
+http://psi.udir.no/ontologi/kl06/kompetansemaalsett,kompetence aim set,Property for 'Laereplan' and 'Laereplan_lk20' to indicate which competency aim set it consists of
+http://psi.udir.no/ontologi/kl06/laaereplanstruktur,curriculum-structure,"curriculum property (lk20) to indicate which structure it follows (currently) either ""regular"" (structured by year level/subject) or ""module structured"" (structured by specified modules)"
+http://psi.udir.no/ontologi/kl06/laaereplanstruktur,curriculum-structure,"egenskap for læreplan (lk20) for å angi om hvilken struktur den følger (foreløpig) enten ""vanlig"" (strukturert etter årstrinn/fag) eller ""modulstrukturert"" (strukturert etter angitte moduler)"
+http://psi.udir.no/ontologi/kl06/laaereplanstruktur,læreplanstruktur,"curriculum property (lk20) to indicate which structure it follows (currently) either ""regular"" (structured by year level/subject) or ""module structured"" (structured by specified modules)"
+http://psi.udir.no/ontologi/kl06/laaereplanstruktur,læreplanstruktur,"egenskap for læreplan (lk20) for å angi om hvilken struktur den følger (foreløpig) enten ""vanlig"" (strukturert etter årstrinn/fag) eller ""modulstrukturert"" (strukturert etter angitte moduler)"
+http://psi.udir.no/ontologi/kl06/laereplan-referanse,curriculum reference,"Egenskap for ""opplaeringsfag"" for å angi kobling til læreplan (array)"
+http://psi.udir.no/ontologi/kl06/laereplan-referanse,curriculum reference,"Property for ""opplaeringsfag"" (teaching subject) to indicate link to curriculum (array)"
+http://psi.udir.no/ontologi/kl06/laereplan-referanse,læreplan-referanse,"Egenskap for ""opplaeringsfag"" for å angi kobling til læreplan (array)"
+http://psi.udir.no/ontologi/kl06/laereplan-referanse,læreplan-referanse,"Property for ""opplaeringsfag"" (teaching subject) to indicate link to curriculum (array)"
+http://psi.udir.no/ontologi/kl06/loepstype-kryssloep,"løpstype, kryssløp","Egenskap for programområde for å angi programområde som er kryssløp til dette programområdet.
+Kryssløp:
+Ordning som tillater valg av et Vg2-programområde som normalt krever et annet Vg1-programområde enn det en elev har fullført, eller valg av et Vg3-programområde/lærlingeløp som normalt krever et annet Vg2 enn det eleven har fullført."
+http://psi.udir.no/ontologi/kl06/loepstype-kryssloep,"løpstype, kryssløp","Property for program area to specify a program area that is cross-discipline / cross-area specialization to this program area.
+Cross-area specialization, Cross-discipline:
+Arrangement allowing the selection of a Vg2 course that normally requires a different Vg1 course than a pupil has completed, or the selection of a Vg3 course or an apprenticeship that normally requires a different Vg2 than the pupil has completed."
+http://psi.udir.no/ontologi/kl06/loepstype-kryssloep,type of educational pathway: cross-discipline / cross-area specialization,"Egenskap for programområde for å angi programområde som er kryssløp til dette programområdet.
+Kryssløp:
+Ordning som tillater valg av et Vg2-programområde som normalt krever et annet Vg1-programområde enn det en elev har fullført, eller valg av et Vg3-programområde/lærlingeløp som normalt krever et annet Vg2 enn det eleven har fullført."
+http://psi.udir.no/ontologi/kl06/loepstype-kryssloep,type of educational pathway: cross-discipline / cross-area specialization,"Property for program area to specify a program area that is cross-discipline / cross-area specialization to this program area.
+Cross-area specialization, Cross-discipline:
+Arrangement allowing the selection of a Vg2 course that normally requires a different Vg1 course than a pupil has completed, or the selection of a Vg3 course or an apprenticeship that normally requires a different Vg2 than the pupil has completed."
+http://psi.udir.no/ontologi/kl06/merkelapper,merkelapper,Egenskap for flere typer elementer for å angi hvilke(n) merkelapp(er) (s.d) disse er koblet til
+http://psi.udir.no/ontologi/kl06/merkelapper,merkelapper,"Property for several types of elements to specify which ""merkelapp"" (tags) these are connected to"
+http://psi.udir.no/ontologi/kl06/merkelapper,tags,Egenskap for flere typer elementer for å angi hvilke(n) merkelapp(er) (s.d) disse er koblet til
+http://psi.udir.no/ontologi/kl06/merkelapper,tags,"Property for several types of elements to specify which ""merkelapp"" (tags) these are connected to"
+http://psi.udir.no/ontologi/kl06/merknads-type,merknadstype,Egenskap for merknad for å angi om den enten er en Fagmerknad eller Vitnemålsmerknad
+http://psi.udir.no/ontologi/kl06/merknads-type,merknadstype,"Property of ""merknad"" (note) to specify whether it is either a ""Fagmerknad"" (subject note) or ""Vitnemålsmerknad"" (diploma note)"
+http://psi.udir.no/ontologi/kl06/merknads-type,note-type,Egenskap for merknad for å angi om den enten er en Fagmerknad eller Vitnemålsmerknad
+http://psi.udir.no/ontologi/kl06/merknads-type,note-type,"Property of ""merknad"" (note) to specify whether it is either a ""Fagmerknad"" (subject note) or ""Vitnemålsmerknad"" (diploma note)"
+http://psi.udir.no/ontologi/kl06/naar-gis-det-undervisning-foerste-semester,når det gis undervisning første semester,Egenskap for fagkode for å angi første mulige semester det kan gis undervisning
+http://psi.udir.no/ontologi/kl06/naar-gis-det-undervisning-foerste-semester,når det gis undervisning første semester,"Property for ""fagkode"" (subject code) to enter the first possible term it can be taught"
+http://psi.udir.no/ontologi/kl06/naar-gis-det-undervisning-foerste-semester,the first semester the teaching is or was administered,Egenskap for fagkode for å angi første mulige semester det kan gis undervisning
+http://psi.udir.no/ontologi/kl06/naar-gis-det-undervisning-foerste-semester,the first semester the teaching is or was administered,"Property for ""fagkode"" (subject code) to enter the first possible term it can be taught"
+http://psi.udir.no/ontologi/kl06/naar-gis-det-undervisning-siste-semester,når gis det undervisning siste semester,Egenskap for fagkode for å angi siste mulige semester det kan gis undervisning
+http://psi.udir.no/ontologi/kl06/naar-gis-det-undervisning-siste-semester,når gis det undervisning siste semester,"Property for ""fagkode"" (subject code) to enter the last possible term it can be taught"
+http://psi.udir.no/ontologi/kl06/naar-gis-det-undervisning-siste-semester,the last semester the teaching is or was administered,Egenskap for fagkode for å angi siste mulige semester det kan gis undervisning
+http://psi.udir.no/ontologi/kl06/naar-gis-det-undervisning-siste-semester,the last semester the teaching is or was administered,"Property for ""fagkode"" (subject code) to enter the last possible term it can be taught"
+http://psi.udir.no/ontologi/kl06/naar-kan-man-ta-eksamen-foerste-semester,når kan man ta eksamen første semester,Egenskap for fagkode for å angi første mulige semester det kan tas eksamen
+http://psi.udir.no/ontologi/kl06/naar-kan-man-ta-eksamen-foerste-semester,når kan man ta eksamen første semester,"Property for ""fagkode"" (subject code) to enter the first possible term it may be exam"
+http://psi.udir.no/ontologi/kl06/naar-kan-man-ta-eksamen-foerste-semester,the first semester you can take exam,Egenskap for fagkode for å angi første mulige semester det kan tas eksamen
+http://psi.udir.no/ontologi/kl06/naar-kan-man-ta-eksamen-foerste-semester,the first semester you can take exam,"Property for ""fagkode"" (subject code) to enter the first possible term it may be exam"
+http://psi.udir.no/ontologi/kl06/naar-kan-man-ta-eksamen-siste-semester,når kan man ta eksamen siste semester,Egenskap for fagkode for å angi siste mulige semester det kan tas eksamen
+http://psi.udir.no/ontologi/kl06/naar-kan-man-ta-eksamen-siste-semester,når kan man ta eksamen siste semester,"Property for ""fagkode"" (subject code) to enter the last possible term it may be exam"
+http://psi.udir.no/ontologi/kl06/naar-kan-man-ta-eksamen-siste-semester,the last semester you can take exam,Egenskap for fagkode for å angi siste mulige semester det kan tas eksamen
+http://psi.udir.no/ontologi/kl06/naar-kan-man-ta-eksamen-siste-semester,the last semester you can take exam,"Property for ""fagkode"" (subject code) to enter the last possible term it may be exam"
+http://psi.udir.no/ontologi/kl06/oppgave,examination-arrangement,"Egenskap for fagkode for å angi om eksamen er sentralgitt, eller lokalt gitt (URIen til denne typen er også brukt som egenskap)"
+http://psi.udir.no/ontologi/kl06/oppgave,examination-arrangement,"Property for ""fagkode"" (subject code) to specify whether the exam is centrally provided, or locally provided (the URI for this type is also used as a property)"
+http://psi.udir.no/ontologi/kl06/oppgave,oppgave,"Egenskap for fagkode for å angi om eksamen er sentralgitt, eller lokalt gitt (URIen til denne typen er også brukt som egenskap)"
+http://psi.udir.no/ontologi/kl06/oppgave,oppgave,"Property for ""fagkode"" (subject code) to specify whether the exam is centrally provided, or locally provided (the URI for this type is also used as a property)"
+http://psi.udir.no/ontologi/kl06/opplaaeringssted,opplæringssted,"Egenskap for programområde for å angi hvor opplæringen skjer, enten i ""Skole"" eller ""Bedrift"""
+http://psi.udir.no/ontologi/kl06/opplaaeringssted,opplæringssted,"Property for programomraade (programme area) to specify where the training takes place either in ""skole"" (school) or ""bedrift"" (company/enterprice)"
+http://psi.udir.no/ontologi/kl06/opplaaeringssted,place of training,"Egenskap for programområde for å angi hvor opplæringen skjer, enten i ""Skole"" eller ""Bedrift"""
+http://psi.udir.no/ontologi/kl06/opplaaeringssted,place of training,"Property for programomraade (programme area) to specify where the training takes place either in ""skole"" (school) or ""bedrift"" (company/enterprice)"
+http://psi.udir.no/ontologi/kl06/opplaeringsfag,opplæringsfag,Attribute for 'fagkode' (subject code) to define what a group of learners at a given grade should be taught
+http://psi.udir.no/ontologi/kl06/opplaeringsfag,opplæringsfag,Egenskap for fagkode for å angi hva en gruppe elever/lærlinger/praksiskandidater/deltakere på et gitt årstrinn skal undervises i
+http://psi.udir.no/ontologi/kl06/opplaeringsfag,teaching subject,Attribute for 'fagkode' (subject code) to define what a group of learners at a given grade should be taught
+http://psi.udir.no/ontologi/kl06/opplaeringsfag,teaching subject,Egenskap for fagkode for å angi hva en gruppe elever/lærlinger/praksiskandidater/deltakere på et gitt årstrinn skal undervises i
+http://psi.udir.no/ontologi/kl06/opplaeringsnivaa,opplæringsnivå,"Egenskap for læreplan, fagtype og fag- og vitnemålsmerknader for å angi hvilke(t) opplæringsnivå den gjelder for"
+http://psi.udir.no/ontologi/kl06/opplaeringsnivaa,opplæringsnivå,"Property for ""laereplan"" (curriculum), ""fagtype"" (subject type) and ""merknad"" (notice) to specify which teaching level it applies"
+http://psi.udir.no/ontologi/kl06/opplaeringsnivaa,teaching level,"Egenskap for læreplan, fagtype og fag- og vitnemålsmerknader for å angi hvilke(t) opplæringsnivå den gjelder for"
+http://psi.udir.no/ontologi/kl06/opplaeringsnivaa,teaching level,"Property for ""laereplan"" (curriculum), ""fagtype"" (subject type) and ""merknad"" (notice) to specify which teaching level it applies"
+http://psi.udir.no/ontologi/kl06/ordforklaringer,glossaries,"Egenskap for ""laereplan_lk20"" for å angi hvilke ordforklaringer som er tilgjengelige i denne læreplanen"
+http://psi.udir.no/ontologi/kl06/ordforklaringer,glossaries,"Property for ""laereplan_lk20"" (curriculum_lk20) to indicate which glossaries are available in this curriculum"
+http://psi.udir.no/ontologi/kl06/ordforklaringer,ordforklaringer,"Egenskap for ""laereplan_lk20"" for å angi hvilke ordforklaringer som er tilgjengelige i denne læreplanen"
+http://psi.udir.no/ontologi/kl06/ordforklaringer,ordforklaringer,"Property for ""laereplan_lk20"" (curriculum_lk20) to indicate which glossaries are available in this curriculum"
+http://psi.udir.no/ontologi/kl06/programfag,programfag,Delmengde av læreplan (LK06) for inndeling av det faglige innholdet i logiske blokker for læreplaner som har programfag i stedet for hovedområder
+http://psi.udir.no/ontologi/kl06/programfag,programfag,Part of curriculum (LK06) for division of the academic content into logical blocks for curricula having Programfag (Programme-subject) in stead of Hovedomraade (Main-subject)
+http://psi.udir.no/ontologi/kl06/programfag,programme subject,Delmengde av læreplan (LK06) for inndeling av det faglige innholdet i logiske blokker for læreplaner som har programfag i stedet for hovedområder
+http://psi.udir.no/ontologi/kl06/programfag,programme subject,Part of curriculum (LK06) for division of the academic content into logical blocks for curricula having Programfag (Programme-subject) in stead of Hovedomraade (Main-subject)
+http://psi.udir.no/ontologi/kl06/programomraade-type,programme area type,"Instance of ""programomraadetype"" (programme area type), either ""Bedrift(Lærling)"" (company/enterprise (Apprentice)), ""Skole(Elev)"" (School (Pupil)) or ""Særløp"" (special pathway)"
+http://psi.udir.no/ontologi/kl06/programomraade-type,programme area type,"Instans av programområdetype, enten Bedrift(Lærling), Skole(Elev) eller Særløp"
+http://psi.udir.no/ontologi/kl06/programomraade-type,programområdetype,"Instance of ""programomraadetype"" (programme area type), either ""Bedrift(Lærling)"" (company/enterprise (Apprentice)), ""Skole(Elev)"" (School (Pupil)) or ""Særløp"" (special pathway)"
+http://psi.udir.no/ontologi/kl06/programomraade-type,programområdetype,"Instans av programområdetype, enten Bedrift(Lærling), Skole(Elev) eller Særløp"
+http://psi.udir.no/ontologi/kl06/programomraader-referanse,programme areas reference,"Connection between ""opplaeringsfag"" (teaching subject) and ""programomraade"" (programme area)"
+http://psi.udir.no/ontologi/kl06/programomraader-referanse,programme areas reference,Kobling mellom opplæringsfag og programområde
+http://psi.udir.no/ontologi/kl06/programomraader-referanse,programområde-referanse,"Connection between ""opplaeringsfag"" (teaching subject) and ""programomraade"" (programme area)"
+http://psi.udir.no/ontologi/kl06/programomraader-referanse,programområde-referanse,Kobling mellom opplæringsfag og programområde
+http://psi.udir.no/ontologi/kl06/relaterte-aarstrinn,related year levels,Egenskap for merknad for å angi hvilke årstrinn merknaden er aktuell for
+http://psi.udir.no/ontologi/kl06/relaterte-aarstrinn,related year levels,"Property for ""merknad"" (note) to specify wich ""aarstrinn"" (year level(s)) the note is appropriate for"
+http://psi.udir.no/ontologi/kl06/relaterte-aarstrinn,relaterte årstrinn,Egenskap for merknad for å angi hvilke årstrinn merknaden er aktuell for
+http://psi.udir.no/ontologi/kl06/relaterte-aarstrinn,relaterte årstrinn,"Property for ""merknad"" (note) to specify wich ""aarstrinn"" (year level(s)) the note is appropriate for"
+http://psi.udir.no/ontologi/kl06/relaterte-fag,related subjcts,Egenskap for merknad som viser hvilke fagkoder den gjelder for
+http://psi.udir.no/ontologi/kl06/relaterte-fag,related subjcts,"Property for ""merknad"" (notice) showing which ""fagkode"" (subject codes) it applies"
+http://psi.udir.no/ontologi/kl06/relaterte-fag,relaterte fag,Egenskap for merknad som viser hvilke fagkoder den gjelder for
+http://psi.udir.no/ontologi/kl06/relaterte-fag,relaterte fag,"Property for ""merknad"" (notice) showing which ""fagkode"" (subject codes) it applies"
+http://psi.udir.no/ontologi/kl06/sensur,censorship-arrangement,Egenskap for fagkode for å angi om sensuren er administrert sentralt eller lokalt
+http://psi.udir.no/ontologi/kl06/sensur,censorship-arrangement,"Property for ""fagkode"" (subject code) to specify whether the censorship is managed centrally or locally"
+http://psi.udir.no/ontologi/kl06/sensur,sensur,Egenskap for fagkode for å angi om sensuren er administrert sentralt eller lokalt
+http://psi.udir.no/ontologi/kl06/sensur,sensur,"Property for ""fagkode"" (subject code) to specify whether the censorship is managed centrally or locally"
+http://psi.udir.no/ontologi/kl06/siste-semester,last semester,Egenskap som brukes av flere grep-typer for å angi siste mulige semester elementet gjelder for
+http://psi.udir.no/ontologi/kl06/siste-semester,last semester,"Property used by several Grep-types to enter the last possible ""semester"" the element applies"
+http://psi.udir.no/ontologi/kl06/siste-semester,siste semester,Egenskap som brukes av flere grep-typer for å angi siste mulige semester elementet gjelder for
+http://psi.udir.no/ontologi/kl06/siste-semester,siste semester,"Property used by several Grep-types to enter the last possible ""semester"" the element applies"
+http://psi.udir.no/ontologi/kl06/sluttkompetanse,final competence,"Egenskap for programområde for å angi om eleven/lærlingen eller praksiskandidaten oppnår studiekompetanse, yrkeskompetanse eller et fag- eller svennebrev etter endt utdanning"
+http://psi.udir.no/ontologi/kl06/sluttkompetanse,final competence,"Property for program area to indicate whether the pupil/apprentice or practice candidate obtains university and college admissions certification, vocational qualifications or a trade certificate or journeyman's certificate after graduation"
+http://psi.udir.no/ontologi/kl06/sluttkompetanse,sluttkompetanse,"Egenskap for programområde for å angi om eleven/lærlingen eller praksiskandidaten oppnår studiekompetanse, yrkeskompetanse eller et fag- eller svennebrev etter endt utdanning"
+http://psi.udir.no/ontologi/kl06/sluttkompetanse,sluttkompetanse,"Property for program area to indicate whether the pupil/apprentice or practice candidate obtains university and college admissions certification, vocational qualifications or a trade certificate or journeyman's certificate after graduation"
+http://psi.udir.no/ontologi/kl06/spraaknivaa,language level,"Egenskap for fagkoder som er språkfag, for å angi nivåer etter CEFR-rammeverket"
+http://psi.udir.no/ontologi/kl06/spraaknivaa,language level,"Property for fagkode (Subject-code) that are language subjects, to indicate levels according to the CEFR framework"
+http://psi.udir.no/ontologi/kl06/spraaknivaa,språknivå,"Egenskap for fagkoder som er språkfag, for å angi nivåer etter CEFR-rammeverket"
+http://psi.udir.no/ontologi/kl06/spraaknivaa,språknivå,"Property for fagkode (Subject-code) that are language subjects, to indicate levels according to the CEFR framework"
+http://psi.udir.no/ontologi/kl06/status,language level,"Egenskap som angir om elementet det opptrer i er “Publisert” (del av gjeldende tilbud), eller “Utgått” (ikke lenger tilbudt)"
+http://psi.udir.no/ontologi/kl06/status,language level,"Property indicating whether the item is ""Publisert"" (""Published"" i.e. part of current offers), or ""Utgått"" (""Expired"" i.e. no longer offered)"
+http://psi.udir.no/ontologi/kl06/status,status,"Egenskap som angir om elementet det opptrer i er “Publisert” (del av gjeldende tilbud), eller “Utgått” (ikke lenger tilbudt)"
+http://psi.udir.no/ontologi/kl06/status,status,"Property indicating whether the item is ""Publisert"" (""Published"" i.e. part of current offers), or ""Utgått"" (""Expired"" i.e. no longer offered)"
+http://psi.udir.no/ontologi/kl06/tidligere-navn,previous name,Egenskap for for flere typer elementer for å angi tidligere tittel for elementet
+http://psi.udir.no/ontologi/kl06/tidligere-navn,previous name,Property for for multiple types of elements to specify the previous title of the element
+http://psi.udir.no/ontologi/kl06/tidligere-navn,tidligere navn,Egenskap for for flere typer elementer for å angi tidligere tittel for elementet
+http://psi.udir.no/ontologi/kl06/tidligere-navn,tidligere navn,Property for for multiple types of elements to specify the previous title of the element
+http://psi.udir.no/ontologi/kl06/tidligere-navn-for,previous name for,"Egenskap for ""tidligere_navn"" for å angi hvilket element det er tidligere navn for"
+http://psi.udir.no/ontologi/kl06/tidligere-navn-for,previous name for,"Property for ""tidligere_navn"" (previous_name) to indicate which element it is a previous name for"
+http://psi.udir.no/ontologi/kl06/tidligere-navn-for,tidligere navn for,"Egenskap for ""tidligere_navn"" for å angi hvilket element det er tidligere navn for"
+http://psi.udir.no/ontologi/kl06/tidligere-navn-for,tidligere navn for,"Property for ""tidligere_navn"" (previous_name) to indicate which element it is a previous name for"
+http://psi.udir.no/ontologi/kl06/tilgjengelige-spraak,available-languages,"Attribute for ""laereplan"" and ""laereplan_lk20"" (curriculum) to list the languages the curriculum exists on"
+http://psi.udir.no/ontologi/kl06/tilgjengelige-spraak,available-languages,Egenskap for læreplan for å angi liste over språk som læreplanen foreligger på
+http://psi.udir.no/ontologi/kl06/tilgjengelige-spraak,tilgjengelige språk,"Attribute for ""laereplan"" and ""laereplan_lk20"" (curriculum) to list the languages the curriculum exists on"
+http://psi.udir.no/ontologi/kl06/tilgjengelige-spraak,tilgjengelige språk,Egenskap for læreplan for å angi liste over språk som læreplanen foreligger på
+http://psi.udir.no/ontologi/kl06/tilhoerende-kompetansemaalsett,associated competence aim set,Egenskap for opplæringsfag for å angi hvilke kompetansemålsett som hører til dette opplæringsfaget
+http://psi.udir.no/ontologi/kl06/tilhoerende-kompetansemaalsett,associated competence aim set,Property for education subject to indicate which competence aim sets belong to this education subject
+http://psi.udir.no/ontologi/kl06/tilhoerende-kompetansemaalsett,tilhørende kompetansemålsett,Egenskap for opplæringsfag for å angi hvilke kompetansemålsett som hører til dette opplæringsfaget
+http://psi.udir.no/ontologi/kl06/tilhoerende-kompetansemaalsett,tilhørende kompetansemålsett,Property for education subject to indicate which competence aim sets belong to this education subject
+http://psi.udir.no/ontologi/kl06/tilhoerer-kompetansemaalsett,belongs to competence aim set,Egenskap for kompetansemål for å angi hvilket kompetansemålsett det tilhører
+http://psi.udir.no/ontologi/kl06/tilhoerer-kompetansemaalsett,belongs to competence aim set,Property for competence aim to indicate which competence aim set it belongs to
+http://psi.udir.no/ontologi/kl06/tilhoerer-kompetansemaalsett,tilhører kompetansemålsett,Egenskap for kompetansemål for å angi hvilket kompetansemålsett det tilhører
+http://psi.udir.no/ontologi/kl06/tilhoerer-kompetansemaalsett,tilhører kompetansemålsett,Property for competence aim to indicate which competence aim set it belongs to
+http://psi.udir.no/ontologi/kl06/tilhoerer-laereplan,belongs to curriculum,Egenskap for flere typer elementer for å angi hvilken læreplan den tilhører
+http://psi.udir.no/ontologi/kl06/tilhoerer-laereplan,belongs to curriculum,Property for several types of items to indicate which curriculum it belongs to
+http://psi.udir.no/ontologi/kl06/tilhoerer-laereplan,tilhører læreplan,Egenskap for flere typer elementer for å angi hvilken læreplan den tilhører
+http://psi.udir.no/ontologi/kl06/tilhoerer-laereplan,tilhører læreplan,Property for several types of items to indicate which curriculum it belongs to
+http://psi.udir.no/ontologi/kl06/tilknyttede-fag,affiliated subjects,Egenskap for Merkelapp for å angi hvilke fagkoder som er knyttet til denne merkelappen
+http://psi.udir.no/ontologi/kl06/tilknyttede-fag,affiliated subjects,Property for Tag to indicate which subject codes are associated with this tag
+http://psi.udir.no/ontologi/kl06/tilknyttede-fag,tilknyttede fag,Egenskap for Merkelapp for å angi hvilke fagkoder som er knyttet til denne merkelappen
+http://psi.udir.no/ontologi/kl06/tilknyttede-fag,tilknyttede fag,Property for Tag to indicate which subject codes are associated with this tag
+http://psi.udir.no/ontologi/kl06/tilknyttede-grunnleggende-ferdigheter,associated basic skills,Egenskap for kompetansemål for å angi en relasjon til grunnleggende ferdigheter
+http://psi.udir.no/ontologi/kl06/tilknyttede-grunnleggende-ferdigheter,associated basic skills,Property for competence aim to specify a relationship to basic skills
+http://psi.udir.no/ontologi/kl06/tilknyttede-grunnleggende-ferdigheter,tilknyttede grunnleggende ferdigheter,Egenskap for kompetansemål for å angi en relasjon til grunnleggende ferdigheter
+http://psi.udir.no/ontologi/kl06/tilknyttede-grunnleggende-ferdigheter,tilknyttede grunnleggende ferdigheter,Property for competence aim to specify a relationship to basic skills
+http://psi.udir.no/ontologi/kl06/tilknyttede-kjerneelementer,associated core elements,Property for competence aim to specify a relationship to basic skills
+http://psi.udir.no/ontologi/kl06/tilknyttede-kjerneelementer,associated core elements,Egenskap for kompetansemål for å angi en relasjon tilkjerneelementer
+http://psi.udir.no/ontologi/kl06/tilknyttede-kjerneelementer,tilknyttede kjerneelementer,Property for competence aim to specify a relationship to basic skills
+http://psi.udir.no/ontologi/kl06/tilknyttede-kjerneelementer,tilknyttede kjerneelementer,Egenskap for kompetansemål for å angi en relasjon tilkjerneelementer
+http://psi.udir.no/ontologi/kl06/tilknyttede-laereplaner,associated curricula,Egenskap for Merkelapp for å angi hvilke læreplaner som er knyttet til denne merkelappen
+http://psi.udir.no/ontologi/kl06/tilknyttede-laereplaner,associated curricula,Property for Tag to indicate which curricula are associated with this tag
+http://psi.udir.no/ontologi/kl06/tilknyttede-laereplaner,tilknyttede læreplaner,Egenskap for Merkelapp for å angi hvilke læreplaner som er knyttet til denne merkelappen
+http://psi.udir.no/ontologi/kl06/tilknyttede-laereplaner,tilknyttede læreplaner,Property for Tag to indicate which curricula are associated with this tag
+http://psi.udir.no/ontologi/kl06/tilknyttede-programomraader,associated programme areas,Egenskap for Merkelapp for å angi hvilke programområder som er knyttet til denne merkelappen
+http://psi.udir.no/ontologi/kl06/tilknyttede-programomraader,associated programme areas,Property for Tag to indicate which programme areas are associated with this tag
+http://psi.udir.no/ontologi/kl06/tilknyttede-programomraader,tilknyttede programområder,Egenskap for Merkelapp for å angi hvilke programområder som er knyttet til denne merkelappen
+http://psi.udir.no/ontologi/kl06/tilknyttede-programomraader,tilknyttede programområder,Property for Tag to indicate which programme areas are associated with this tag
+http://psi.udir.no/ontologi/kl06/tilknyttede-tverrfaglige-temaer,associated interdisciplinary-topics,Egenskap for kompetansemål for å angi en relasjon til tverrfaglige temaer
+http://psi.udir.no/ontologi/kl06/tilknyttede-tverrfaglige-temaer,associated interdisciplinary-topics,Property for competence aim to specify a relationship to interdisciplinary-topics
+http://psi.udir.no/ontologi/kl06/tilknyttede-tverrfaglige-temaer,tilknyttede tverrfaglige temaer,Egenskap for kompetansemål for å angi en relasjon til tverrfaglige temaer
+http://psi.udir.no/ontologi/kl06/tilknyttede-tverrfaglige-temaer,tilknyttede tverrfaglige temaer,Property for competence aim to specify a relationship to interdisciplinary-topics
+http://psi.udir.no/ontologi/kl06/tilknyttede-verb,associated verbs,Egenskap for kompetansemål for å angi en relasjon til verb som har en forklaring
+http://psi.udir.no/ontologi/kl06/tilknyttede-verb,associated verbs,Property for competence aim to to indicate a relation to verbs that have an explanation
+http://psi.udir.no/ontologi/kl06/tilknyttede-verb,tilknyttede verb,Egenskap for kompetansemål for å angi en relasjon til verb som har en forklaring
+http://psi.udir.no/ontologi/kl06/tilknyttede-verb,tilknyttede verb,Property for competence aim to to indicate a relation to verbs that have an explanation
+http://psi.udir.no/ontologi/kl06/tverrfaglige-temaer,interdisciplinary topics,Egenskap for læreplan (LK20) for å angi hvilke tverrfaglige temaer det inneholder
+http://psi.udir.no/ontologi/kl06/tverrfaglige-temaer,interdisciplinary topics,Property for curriculum (LK20) to indicate which interdisciplinary topics it contains
+http://psi.udir.no/ontologi/kl06/tverrfaglige-temaer,tverrfaglige temaer,Egenskap for læreplan (LK20) for å angi hvilke tverrfaglige temaer det inneholder
+http://psi.udir.no/ontologi/kl06/tverrfaglige-temaer,tverrfaglige temaer,Property for curriculum (LK20) to indicate which interdisciplinary topics it contains
+http://psi.udir.no/ontologi/kl06/type-utdanningsprogram,type education programme,Egenskap for utdanningsprogram for å angi om utdanningsprogrammet enten er Studieforberedende utdanningsprogram eller Yrkesfaglig utdanningsprogram
+http://psi.udir.no/ontologi/kl06/type-utdanningsprogram,type education programme,"Property of ""utdanningsprogram"" (education programme) to determine whether the education program is either ""Studieforberedende utdanningsprogram"" (Programme for General Studies) or ""Studieforberedende utdanningsprogram"" (Vocational Education Programme)"
+http://psi.udir.no/ontologi/kl06/type-utdanningsprogram,type utdanningsprogram,Egenskap for utdanningsprogram for å angi om utdanningsprogrammet enten er Studieforberedende utdanningsprogram eller Yrkesfaglig utdanningsprogram
+http://psi.udir.no/ontologi/kl06/type-utdanningsprogram,type utdanningsprogram,"Property of ""utdanningsprogram"" (education programme) to determine whether the education program is either ""Studieforberedende utdanningsprogram"" (Programme for General Studies) or ""Studieforberedende utdanningsprogram"" (Vocational Education Programme)"
+http://psi.udir.no/ontologi/kl06/underliggende-hovedomraader,underliggende hovedområder,Egenskap for programfag for å angi hierarkisk underliggende hovedområde og/eller programfag
+http://psi.udir.no/ontologi/kl06/underliggende-hovedomraader,underliggende hovedområder,"Property for ""programfag"" (programme subject) for specifying hierarchical underlying ""hovedomraade"" (main area) and/or ""programfag"" (programme subject)"
+http://psi.udir.no/ontologi/kl06/underliggende-hovedomraader,underlying main areas,Egenskap for programfag for å angi hierarkisk underliggende hovedområde og/eller programfag
+http://psi.udir.no/ontologi/kl06/underliggende-hovedomraader,underlying main areas,"Property for ""programfag"" (programme subject) for specifying hierarchical underlying ""hovedomraade"" (main area) and/or ""programfag"" (programme subject)"
+http://psi.udir.no/ontologi/kl06/utdanningsprogram-referanse,education programme-reference,Egenskap for programområde som angir hvilke utdanningsprogram det hører til
+http://psi.udir.no/ontologi/kl06/utdanningsprogram-referanse,education programme-reference,"Property for ""programomraade"" (programme area) specifies the ""utdanningsprogram"" (education programme) it belongs"
+http://psi.udir.no/ontologi/kl06/utdanningsprogram-referanse,utdanningsprogram-referanse,Egenskap for programområde som angir hvilke utdanningsprogram det hører til
+http://psi.udir.no/ontologi/kl06/utdanningsprogram-referanse,utdanningsprogram-referanse,"Property for ""programomraade"" (programme area) specifies the ""utdanningsprogram"" (education programme) it belongs"
+http://psi.udir.no/ontologi/kl06/vurderingsordning-eksamensform-paa-vitnemaalet-elev,"examination and assesment, examination-form to certificate, pupil",Egenskap for fagkode for å angi hvilken eksamensform som skal påføres vitnemålet for elever
+http://psi.udir.no/ontologi/kl06/vurderingsordning-eksamensform-paa-vitnemaalet-elev,"examination and assesment, examination-form to certificate, pupil","Property for ""fagkode"" (subject code) to specify the examination form to be applied the certificate/testimony for pupils"
+http://psi.udir.no/ontologi/kl06/vurderingsordning-eksamensform-paa-vitnemaalet-elev,"vurderingsordning - eksamensform på vitnemålet, elev",Egenskap for fagkode for å angi hvilken eksamensform som skal påføres vitnemålet for elever
+http://psi.udir.no/ontologi/kl06/vurderingsordning-eksamensform-paa-vitnemaalet-elev,"vurderingsordning - eksamensform på vitnemålet, elev","Property for ""fagkode"" (subject code) to specify the examination form to be applied the certificate/testimony for pupils"
+http://psi.udir.no/ontologi/kl06/vurderingsordning-eksamensform-paa-vitnemaalet-privatist,"examination and assesment, examination form to certificate, external candidates",Egenskap for fagkode (i vurderingsordning-objektet i REST) for å angi hvilken eksamensform som skal påføres vitnemålet for privatister
+http://psi.udir.no/ontologi/kl06/vurderingsordning-eksamensform-paa-vitnemaalet-privatist,"examination and assesment, examination form to certificate, external candidates","Property for ""fagkode"" (subject code) and it's ""vurderingsordning"" (examination-and-assesment object in REST) to specify the examination form to be applied the certificate/testimony for external candidates"
+http://psi.udir.no/ontologi/kl06/vurderingsordning-eksamensform-paa-vitnemaalet-privatist,"vurderingsordning - eksamensform på vitnemålet, privatist",Egenskap for fagkode (i vurderingsordning-objektet i REST) for å angi hvilken eksamensform som skal påføres vitnemålet for privatister
+http://psi.udir.no/ontologi/kl06/vurderingsordning-eksamensform-paa-vitnemaalet-privatist,"vurderingsordning - eksamensform på vitnemålet, privatist","Property for ""fagkode"" (subject code) and it's ""vurderingsordning"" (examination-and-assesment object in REST) to specify the examination form to be applied the certificate/testimony for external candidates"
+http://psi.udir.no/ontologi/kl06/vurderingsordning-type-eksamensordning-elev,"examination and assesment, type of examination arrangement, pupil",Egenskap for fagkode for å angi hvilken eksamensordning som gjelder for elever
+http://psi.udir.no/ontologi/kl06/vurderingsordning-type-eksamensordning-elev,"examination and assesment, type of examination arrangement, pupil","Property for ""fagkode"" (subject code) to specify what type of ""ekamensordning"" (examination arrangement) applicable to pupils/students"
+http://psi.udir.no/ontologi/kl06/vurderingsordning-type-eksamensordning-elev,"vurderingsordning, type eksamensordning, elev",Egenskap for fagkode for å angi hvilken eksamensordning som gjelder for elever
+http://psi.udir.no/ontologi/kl06/vurderingsordning-type-eksamensordning-elev,"vurderingsordning, type eksamensordning, elev","Property for ""fagkode"" (subject code) to specify what type of ""ekamensordning"" (examination arrangement) applicable to pupils/students"
+http://psi.udir.no/ontologi/kl06/vurderingsordning-type-eksamensordning-privatist,"examination and assesment, type of examination arrangement, external candidate",Egenskap for fagkode for å angi hvilken eksamensordning som gjelder for elever
+http://psi.udir.no/ontologi/kl06/vurderingsordning-type-eksamensordning-privatist,"examination and assesment, type of examination arrangement, external candidate","Property for ""fagkode"" (subject code) to specify what type of ""ekamensordning"" (examination arrangement) applicable to external candidates"
+http://psi.udir.no/ontologi/kl06/vurderingsordning-type-eksamensordning-privatist,"vurderingsordning, type eksamensordning, privatist",Egenskap for fagkode for å angi hvilken eksamensordning som gjelder for elever
+http://psi.udir.no/ontologi/kl06/vurderingsordning-type-eksamensordning-privatist,"vurderingsordning, type eksamensordning, privatist","Property for ""fagkode"" (subject code) to specify what type of ""ekamensordning"" (examination arrangement) applicable to external candidates"
+http://psi.udir.no/ontologi/kl06/vurderingsordning-vurderingsuttrykk-elev,"examination and assesment, expression-of-assessment, pupil",Egenskap for fagkode for å angi om det skal gis tallkarakterer eller om det skal benyttes andre uttrykk for vurderingen for elever
+http://psi.udir.no/ontologi/kl06/vurderingsordning-vurderingsuttrykk-elev,"examination and assesment, expression-of-assessment, pupil","Property for ""fagkode"" (subject code) to specify whether it should be given numerical grades or whether to use other expressions of assessment for pupils/students"
+http://psi.udir.no/ontologi/kl06/vurderingsordning-vurderingsuttrykk-elev,"vurderingsordning, vurderingsuttrykk, elev",Egenskap for fagkode for å angi om det skal gis tallkarakterer eller om det skal benyttes andre uttrykk for vurderingen for elever
+http://psi.udir.no/ontologi/kl06/vurderingsordning-vurderingsuttrykk-elev,"vurderingsordning, vurderingsuttrykk, elev","Property for ""fagkode"" (subject code) to specify whether it should be given numerical grades or whether to use other expressions of assessment for pupils/students"
+http://psi.udir.no/ontologi/kl06/vurderingsordning-vurderingsuttrykk-privatist,"examination and assesment, expression of assessment, external candidate",Egenskap for fagkode for å angi om det skal gis tallkarakterer eller om det skal benyttes andre uttrykk for vurderingen for privatister
+http://psi.udir.no/ontologi/kl06/vurderingsordning-vurderingsuttrykk-privatist,"examination and assesment, expression of assessment, external candidate","Property for ""fagkode"" (subject code) to specify whether it should be given numerical grades or whether to use other expressions of assessment for external candidates"
+http://psi.udir.no/ontologi/kl06/vurderingsordning-vurderingsuttrykk-privatist,"vurderingsordning, vurderingsuttrykk, privatist",Egenskap for fagkode for å angi om det skal gis tallkarakterer eller om det skal benyttes andre uttrykk for vurderingen for privatister
+http://psi.udir.no/ontologi/kl06/vurderingsordning-vurderingsuttrykk-privatist,"vurderingsordning, vurderingsuttrykk, privatist","Property for ""fagkode"" (subject code) to specify whether it should be given numerical grades or whether to use other expressions of assessment for external candidates"

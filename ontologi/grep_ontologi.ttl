@@ -1,0 +1,168 @@
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix u:    <http://psi.udir.no/ontologi/kl06/> .
+
+# =============================================================================
+# Ontologi: Grep-modellen for kompetansemål (LK20)
+# Scope: Klasser og egenskaper relevante for grep-mcp-mockup
+# Kilde: Offisielle definisjoner fra Udir (classes.csv, ObjectProperties.csv)
+# Versjon: 0.1 (første iterasjon)
+# =============================================================================
+
+<https://github.com/udir/grep-mcp-mockup/ontologi/grep>
+    a owl:Ontology ;
+    rdfs:label "Grep-ontologi (grep-mcp-mockup)"@nb ;
+    dct:description """
+        Normativ ontologi som beskriver Grep-datamodellen for læreplaner og
+        kompetansemål i Kunnskapsløftet LK20. Avgrenset til klasser og
+        egenskaper som er relevante for grep-mcp-mockup-prosjektet.
+        CASE-broaksiomer er definert i grep_case_mapping.ttl.
+    """@nb ;
+    dct:creator "grep-mcp-mockup-prosjektet, Udir" ;
+    owl:versionInfo "0.1" .
+
+
+# =============================================================================
+# KLASSER
+# =============================================================================
+
+u:Kompetansemaal
+    a owl:Class ;
+    rdfs:label "Kompetansemål"@nb ;
+    rdfs:label "Competence aim"@en ;
+    rdfs:comment """Element som angir en delmengde av den kompetanse en elev, lærling eller
+        praksiskandidat skal ha oppnådd etter endt opplæring på et gitt nivå/trinn.
+        Abstrakt superklasse – bruk u:kompetansemaal_lk20 for LK20-data."""@nb ;
+    rdfs:comment """Element which indicates a subset of the competence a student, apprentice or
+        practice candidate must have achieved after completing training at a given level/year-level.
+        Abstract superclass – use u:kompetansemaal_lk20 for LK20 data."""@en .
+
+u:kompetansemaal_lk20
+    a owl:Class ;
+    rdfs:subClassOf u:Kompetansemaal ;
+    rdfs:label "Kompetansemål (LK20)"@nb ;
+    rdfs:label "Competence aim (LK20)"@en ;
+    rdfs:comment """Kompetansemål slik de er definert i Kunnskapsløftet 2020 (LK20),
+        fagfornyelsen. Dette er den konkrete klassen som brukes i Greps triplestore."""@nb ;
+    rdfs:comment """Competence aim as defined in the Norwegian Knowledge Promotion 2020 (LK20).
+        This is the concrete class used in the Grep triplestore."""@en .
+
+u:Laereplan
+    a owl:Class ;
+    rdfs:label "Læreplan"@nb ;
+    rdfs:label "Curriculum"@en ;
+    rdfs:comment """Element som uttrykker den samlede kompetansen en elev, lærling eller
+        lærekandidat skal ha etter endt opplæring på et gitt nivå/trinn i ett eller flere fag
+        etter Kunnskapsløftet (LK06). Abstrakt superklasse – bruk u:Laereplan_lk20 for LK20-data."""@nb ;
+    rdfs:comment """Element that indicates the overall competence a student, apprentice or training
+        candidate must have after completing training at a specified level/year-level in one or more
+        subjects according to the Knowledge Promotion (LK06).
+        Abstract superclass – use u:Laereplan_lk20 for LK20 data."""@en .
+
+u:Laereplan_lk20
+    a owl:Class ;
+    rdfs:subClassOf u:Laereplan ;
+    rdfs:label "Læreplan (LK20)"@nb ;
+    rdfs:label "Curriculum (LK20)"@en ;
+    rdfs:comment """Element som uttrykker den samlede kompetansen en elev, lærling, lærekandidat
+        eller deltaker skal ha etter endt opplæring på et gitt nivå/trinn i ett eller flere fag
+        etter Kunnskapsløftet LK20, fagfornyelsen."""@nb ;
+    rdfs:comment """Element that indicates the overall competence a student, apprentice, training
+        candidate or participant must have after completing training at a specified level/year-level
+        in one or more subjects according to the Knowledge Promotion (LK20)."""@en .
+
+u:Kompetansemaalsett
+    a owl:Class ;
+    rdfs:label "Kompetansemålsett"@nb ;
+    rdfs:label "Competence aim set"@en ;
+    rdfs:comment """Et sett med kompetansemål, gruppert under hovedområder, som gjelder for et
+        spesifisert sett med trinn eller nivåer i LK06-læreplaner.
+        Abstrakt superklasse – bruk u:Kompetansemaalsett_lk20 for LK20-data."""@nb ;
+    rdfs:comment """A set of competence aims, grouped under the main areas, that apply to a
+        specified set of steps or levels in LK06-curricula.
+        Abstract superclass – use u:Kompetansemaalsett_lk20 for LK20 data."""@en .
+
+u:Kompetansemaalsett_lk20
+    a owl:Class ;
+    rdfs:subClassOf u:Kompetansemaalsett ;
+    rdfs:label "Kompetansemålsett (LK20)"@nb ;
+    rdfs:label "Competence aim set (LK20)"@en ;
+    rdfs:comment "Et sett med kompetansemål som gjelder for et spesifisert sett med trinn eller nivåer i LK20-læreplaner."@nb ;
+    rdfs:comment "A set of competence aims that apply to a specified set of steps or levels in LK20-curricula."@en .
+
+u:Aarstrinn
+    a owl:Class ;
+    rdfs:label "Årstrinn"@nb ;
+    rdfs:label "Year level"@en ;
+    rdfs:comment "Utdanningsnivå som angir progresjon for det 13-årige utdanningsløpet."@nb ;
+    rdfs:comment "Educational level indicating progression for the thirteen years of primary and secondary education."@en .
+
+
+# =============================================================================
+# OBJECT PROPERTIES (relasjoner mellom klasser)
+# =============================================================================
+
+u:tilhoerer-laereplan
+    a owl:ObjectProperty ;
+    rdfs:label "tilhører læreplan"@nb ;
+    rdfs:label "belongs to curriculum"@en ;
+    rdfs:comment "Egenskap for flere typer elementer for å angi hvilken læreplan de tilhører."@nb ;
+    rdfs:comment "Property for several types of items to indicate which curriculum it belongs to."@en ;
+    rdfs:domain u:Kompetansemaal ;
+    rdfs:range  u:Laereplan .
+
+u:tilhoerer-kompetansemaalsett
+    a owl:ObjectProperty ;
+    rdfs:label "tilhører kompetansemålsett"@nb ;
+    rdfs:label "belongs to competence aim set"@en ;
+    rdfs:comment "Egenskap for kompetansemål for å angi hvilket kompetansemålsett det tilhører."@nb ;
+    rdfs:comment "Property for competence aim to indicate which competence aim set it belongs to."@en ;
+    rdfs:domain u:Kompetansemaal ;
+    rdfs:range  u:Kompetansemaalsett .
+
+u:etter-aarstrinn
+    a owl:ObjectProperty ;
+    rdfs:label "etter årstrinn"@nb ;
+    rdfs:label "achieved after year level"@en ;
+    rdfs:comment """Egenskap for kompetansemålsett for å angi etter hvilket årstrinn
+        kompetansen skal være oppnådd."""@nb ;
+    rdfs:comment """Property for competence aim set, indicating by what year level
+        the learner will have acquired the competences described by the set."""@en ;
+    rdfs:domain u:Kompetansemaalsett ;
+    rdfs:range  u:Aarstrinn .
+
+
+# =============================================================================
+# DATATYPE PROPERTIES (egenskaper med litteralverdier)
+# =============================================================================
+
+u:kode
+    a owl:DatatypeProperty ;
+    rdfs:label "kode"@nb ;
+    rdfs:label "code"@en ;
+    rdfs:comment """Unik identifikator-kode for ressursen.
+        Eksempler: 'SAF01-04' for en læreplan, 'KM1638' for et kompetansemål."""@nb ;
+    rdfs:comment """Unique identifier code for the resource.
+        Examples: 'SAF01-04' for a curriculum, 'KM1638' for a competence aim."""@en ;
+    rdfs:range xsd:string .
+
+u:tittel
+    a owl:DatatypeProperty ;
+    rdfs:label "tittel"@nb ;
+    rdfs:label "title"@en ;
+    rdfs:comment """Tekstlig tittel eller formulering av ressursen. Finnes i flere
+        språkvarianter (nob, nno) samt en 'default'-variant som brukes til visning."""@nb ;
+    rdfs:comment """Textual title or formulation of the resource. Available in multiple
+        language variants (nob, nno) as well as a 'default' variant used for display."""@en ;
+    rdfs:range rdf:langString .
+
+u:kortform
+    a owl:DatatypeProperty ;
+    rdfs:label "kortform"@nb ;
+    rdfs:label "short form"@en ;
+    rdfs:comment "Kortform av en betegnelse, typisk brukt for årstrinn. Eksempel: '10' for 'Tiende årstrinn'."@nb ;
+    rdfs:comment "Short form of a designation, typically used for year levels. Example: '10' for 'Tenth year level'."@en ;
+    rdfs:range xsd:string .
