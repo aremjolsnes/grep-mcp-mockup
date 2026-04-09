@@ -26,6 +26,19 @@ Demonstrere tre lag i kombinasjon for presentasjonen:
 
 ---
 
+## GraphDB-oppsett
+
+Før kode-utvikling starter, må følgende være på plass i GraphDB Workbench:
+
+1. **Opprett repo:** `grep-mcp-mockup`
+2. **Last inn data:** Grep JSON-LD-dump fra `https://data.udir.no/kl06/v201906/dump/jsonld`
+3. **Bygg ontologier:** Lag mappinger for CASE/CFItem-konvertering
+4. **Eksponér via SPARQL:** Gjør repoet tilgjengelig på `https://sparql-beta-data.udir.no/repositories/grep-mcp-mockup`
+
+> Dette håndteres av Are via Workbench – koden trenger bare å snakke mot det ferdige SPARQL-endpointet.
+
+---
+
 ## Steg 1 – MCP-server for Grep
 
 ### Hva den skal gjøre
@@ -36,7 +49,7 @@ Demonstrere tre lag i kombinasjon for presentasjonen:
 
 ### Teknisk stack
 - **Python** (FastMCP eller mcp-python SDK)
-- **SPARQL** mot `https://data.udir.no/kl06/v201906/` (eller GraphDB-instans)
+- **SPARQL** mot GraphDB-repo `grep-mcp-mockup` på `https://sparql-beta-data.udir.no/repositories/grep-mcp-mockup`
 - **MCP-verktøy som eksponeres:**
   - `grep_hent_kompetansemaal(fagkode, trinn)` – henter KM for gitt fag og trinn
   - `grep_hent_laereplan(fagkode)` – henter full læreplan
@@ -44,7 +57,9 @@ Demonstrere tre lag i kombinasjon for presentasjonen:
   - (Valgfritt) `case_hent_cfitems(fagkode)` – returnerer data i CASE CFItem-format
 
 ### Avhengigheter
-- [ ] Tilgang til Greps SPARQL-endepunkt (verifiser at det er åpent)
+- [ ] GraphDB-repo `grep-mcp-mockup` opprettet i Workbench
+- [ ] Grep JSON-LD-dump lastet inn: `https://data.udir.no/kl06/v201906/dump/jsonld`
+- [ ] Ontologi-mappinger for CASE/CFItem laget og bakt inn i repoet
 - [ ] MCP Python SDK installert (`pip install mcp`)
 - [ ] Test at SPARQL-spørringer returnerer forventet data for SAF1-04
 
