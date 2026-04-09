@@ -7,90 +7,140 @@
 
 # =============================================================================
 # CASE-broaksiomer: Grep → CASE (Competencies & Academic Standards Exchange)
+# CASE bridge axioms: Grep → CASE (Competencies & Academic Standards Exchange)
 #
 # Denne filen definerer koblingen mellom Grep-ontologien og CASE-standarden
 # fra 1EdTech (tidligere IMS Global). Lastes inn etter grep_ontologi.ttl.
 #
-# CASE-standarden: https://www.imsglobal.org/activity/case
-# Versjon: 0.1 (første iterasjon)
+# This file defines the mapping between the Grep ontology and the CASE standard
+# from 1EdTech (formerly IMS Global). Load after grep_ontologi.ttl.
+#
+# CASE-standarden / CASE standard: https://www.imsglobal.org/activity/case
+# Versjon / Version: 0.1 (første iterasjon / first iteration)
 # =============================================================================
 
 <https://github.com/udir/grep-mcp-mockup/ontologi/grep-case-mapping>
     a owl:Ontology ;
     rdfs:label "Grep–CASE broontologi (grep-mcp-mockup)"@nb ;
+    rdfs:label "Grep–CASE bridge ontology (grep-mcp-mockup)"@en ;
     dct:description """
         Definerer koblingen mellom Grep-ontologien og CASE-standarden
         (Competencies & Academic Standards Exchange) fra 1EdTech.
         Målet er å vise at Grep-data kan eksponeres i CASE-format
         uten å endre selve Grep-strukturen.
     """@nb ;
+    dct:description """
+        Defines the mapping between the Grep ontology and the CASE standard
+        (Competencies & Academic Standards Exchange) from 1EdTech.
+        The goal is to show that Grep data can be exposed in CASE format
+        without modifying the Grep structure itself.
+    """@en ;
     owl:imports <https://github.com/udir/grep-mcp-mockup/ontologi/grep> ;
     owl:versionInfo "0.1" .
 
 
 # =============================================================================
-# KLASSEKOBLINGER
+# KLASSEKOBLINGER / CLASS MAPPINGS
 # =============================================================================
 
 # Læreplan ≈ CFDocument
 # En CASE CFDocument representerer et komplett læreplan-dokument,
 # tilsvarende Greps Laereplan.
+#
+# A CASE CFDocument represents a complete curriculum document,
+# equivalent to Grep's Laereplan.
 u:Laereplan
     owl:equivalentClass case:CFDocument ;
     skos:exactMatch case:CFDocument ;
     rdfs:comment """
         En Grep-læreplan (f.eks. SAF01-04) tilsvarer et CASE CFDocument –
         den øverste beholderen for et sett med kompetansestandarder.
-    """@nb .
+    """@nb ;
+    rdfs:comment """
+        A Grep curriculum (e.g. SAF01-04) corresponds to a CASE CFDocument –
+        the top-level container for a set of competency standards.
+    """@en .
 
 # Kompetansemål ≈ CFItem
 # Et CASE CFItem representerer ett enkelt kompetansemål eller standard.
+#
+# A CASE CFItem represents a single competence aim or standard.
 u:Kompetansemaal
     owl:equivalentClass case:CFItem ;
     skos:exactMatch case:CFItem ;
     rdfs:comment """
         Et Grep-kompetansemål tilsvarer et CASE CFItem – den atomære
         enheten som beskriver hva en elev skal mestre.
-    """@nb .
+    """@nb ;
+    rdfs:comment """
+        A Grep competence aim corresponds to a CASE CFItem – the atomic
+        unit describing what a learner must master.
+    """@en .
 
-# Kompetansemålsett ≈ CFPackage (tilnærmet)
+# Kompetansemålsett ≈ CFPackage (tilnærmet / approximate)
 # CASE CFPackage er en beholder for relaterte CFItem-er.
 # Kompetansemålsett er ikke identisk, men fyller samme rolle som gruppering.
+#
+# CASE CFPackage is a container for related CFItems.
+# Kompetansemålsett is not identical, but serves the same grouping role.
 u:Kompetansemaalsett
     skos:closeMatch case:CFPackage ;
     rdfs:comment """
         Et Grep-kompetansemålsett grupperer kompetansemål for et gitt trinn,
         tilsvarende et CASE CFPackage. Koblingen er tilnærmet (closeMatch)
         fordi trinn-dimensjonen ikke har direkte ekvivalent i CASE.
-    """@nb .
+    """@nb ;
+    rdfs:comment """
+        A Grep competence aim set groups competence aims for a given year level,
+        approximating a CASE CFPackage. The mapping is approximate (closeMatch)
+        because the year-level dimension has no direct equivalent in CASE.
+    """@en .
 
 
 # =============================================================================
-# EGENSKAPSKOBLINGER
+# EGENSKAPSKOBLINGER / PROPERTY MAPPINGS
 # =============================================================================
 
 # u:kode ≈ case:humanCodingScheme
 # CASE bruker humanCodingScheme for den menneskelig lesbare koden,
 # f.eks. 'SAF01-04' eller 'KM1638'.
+#
+# CASE uses humanCodingScheme for the human-readable code,
+# e.g. 'SAF01-04' or 'KM1638'.
 u:kode
     skos:exactMatch case:humanCodingScheme ;
-    rdfs:comment "Grep-kode tilsvarer CASE humanCodingScheme."@nb .
+    rdfs:comment "Grep-kode tilsvarer CASE humanCodingScheme."@nb ;
+    rdfs:comment "Grep code corresponds to CASE humanCodingScheme."@en .
 
 # u:tittel ≈ case:fullStatement
 # CASE bruker fullStatement for den fulle teksten til et kompetansemål.
 # For læreplaner tilsvarer det dct:title i CASE.
+#
+# CASE uses fullStatement for the full text of a competence aim.
+# For curricula, the equivalent is dct:title in CASE.
 u:tittel
     skos:exactMatch case:fullStatement ;
     rdfs:comment """
         Grep-tittel på et kompetansemål tilsvarer CASE fullStatement.
         For læreplaner er koblingen til case:CFDocument-tittel via dct:title.
-    """@nb .
+    """@nb ;
+    rdfs:comment """
+        The Grep title of a competence aim corresponds to CASE fullStatement.
+        For curricula, the mapping is to case:CFDocument title via dct:title.
+    """@en .
 
-# u:kortform – ingen direkte CASE-ekvivalent
+# u:kortform – ingen direkte CASE-ekvivalent / no direct CASE equivalent
 # Kortform brukes kun for årstrinn i Grep og har ikke en etablert
 # CASE-ekvivalent. Dokumenteres som uavklart.
+#
+# kortform is used only for year levels in Grep and has no established
+# CASE equivalent. Documented as unresolved.
 u:kortform
     skos:note """
         Ingen direkte CASE-ekvivalent. Brukes internt i Grep for å angi
         trinn som tall (f.eks. '10'), men inngår ikke i CASE-modellen.
-    """@nb .
+    """@nb ;
+    skos:note """
+        No direct CASE equivalent. Used internally in Grep to represent
+        year levels as numbers (e.g. '10'), but not part of the CASE model.
+    """@en .
