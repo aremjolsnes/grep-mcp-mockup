@@ -41,11 +41,13 @@ def grep_hent_kompetansemaal(laereplan_kode: str, trinn: str) -> list[dict]:
     raw = hent_kompetansemaal(laereplan_kode, trinn)
     return [
         {
-            "kmCode":    r.get("kmCode", {}).get("value", ""),
-            "title":     r.get("title", {}).get("value", ""),
-            "kmsTitle":  r.get("kmsTitle", {}).get("value", ""),
+            "kmCode":     r.get("kmCode", {}).get("value", ""),
+            "title":      r.get("title", {}).get("value", ""),
+            "kmsTitle":   r.get("kmsTitle", {}).get("value", ""),
             "gradeLabel": r.get("gradeLabel", {}).get("value", ""),
-            "currTitle": r.get("currTitle", {}).get("value", ""),
+            "currTitle":  r.get("currTitle", {}).get("value", ""),
+            "keCodes":    r.get("keCodes", {}).get("value", ""),
+            "keTitles":   r.get("keTitles", {}).get("value", ""),
         }
         for r in raw
     ]

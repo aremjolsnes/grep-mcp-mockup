@@ -108,6 +108,8 @@ class GrepSparqlClient:
         PREFIX d: <http://psi.udir.no/kl06/>
 
         SELECT ?km ?kmCode ?title ?kms ?kmsTitle ?grade ?gradeLabel ?gradeShort ?curriculum ?currTitle
+               (GROUP_CONCAT(DISTINCT ?keCode ; separator="|") AS ?keCodes)
+               (GROUP_CONCAT(DISTINCT ?keTitle ; separator="|") AS ?keTitles)
         WHERE {{
             ?km a u:kompetansemaal_lk20 ;
                 u:kode ?kmCode ;
@@ -125,6 +127,13 @@ class GrepSparqlClient:
             ?grade u:tittel ?gradeLabel ;
                    u:kortform ?gradeShort .
 
+            OPTIONAL {{
+                ?km u:tilknyttede-kjerneelementer ?ke .
+                ?ke u:kode ?keCode ;
+                    u:tittel ?keTitle .
+                FILTER (LANG(?keTitle) = "default")
+            }}
+
             FILTER (
                 LANG(?title) = "default" &&
                 LANG(?kmsTitle) = "default" &&
@@ -134,6 +143,7 @@ class GrepSparqlClient:
             )
             {grade_filter}
         }}
+        GROUP BY ?km ?kmCode ?title ?kms ?kmsTitle ?grade ?gradeLabel ?gradeShort ?curriculum ?currTitle
         ORDER BY ?kmCode
         LIMIT 200
         """

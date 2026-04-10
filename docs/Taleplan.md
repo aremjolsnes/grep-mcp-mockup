@@ -57,7 +57,7 @@ topic: [Grep, CASE, RAG]
 
 ### Hovedelementene
 
-- **Fagkode** (f.eks. SAF01-04) – identifiserer faget
+- **Læreplan-kode** (f.eks. SAF01-04) – identifiserer faget
 - **Læreplan** – ett fastsatt dokument per fag og program
 - **Kompetansemål** – hva elever skal kunne (kodene: f.eks. KM1648)
 - **Kjerneelement** – sentrale idéer og konsepter innenfor faget
@@ -65,7 +65,7 @@ topic: [Grep, CASE, RAG]
 
 ### Eksempel: En konkret norsk læreplan
 
-- Fagkode: SAF01-04 (Samfunnsfag, LK20)
+- Læreplan-kode: SAF01-04 (Samfunnsfag, LK20)
 - Læreplan-dokument: inneholder alle kompetansemål for dette faget og programmet
 - Ett kompetansemål: KM1648
   - Har kode (KM1648), tekst, tilhørende kjerneelement, trinn
@@ -120,7 +120,7 @@ topic: [Grep, CASE, RAG]
 - Fungerer som et «stikkontakt-system»: AI-modellen trenger ikke å vite hvordan Grep fungerer – den bruker et MCP-verktøy som snakker med Grep på dens vegne
 - Konkret flyt med MCP:
   ```
-  Bruker spør AI → AI kaller MCP-verktøy «grep_sparql» →
+  Bruker spør AI → AI kaller MCP-verktøy «grep_hent_kompetansemaal» →
   MCP-server sender SPARQL mot Grep → returnerer strukturerte data →
   AI formulerer svar basert på faktiske kompetansemål
   ```
@@ -137,10 +137,10 @@ topic: [Grep, CASE, RAG]
 
 Demonstrasjonen viser tre lag i kombinasjon:
 
-| Lag | Teknologi | Hva det gjør |
-|---|---|---|
-| 1 – Fagdata | Grep via SPARQL | Henter eksakte kompetansemål for SAF01-04, 10. trinn |
-| 2 – Protokoll | MCP-server | Eksponerer Grep som et AI-verktøy; kan oversette til CASE |
+| Lag                | Teknologi                  | Hva det gjør                                               |
+| ------------------ | -------------------------- | ---------------------------------------------------------- |
+| 1 – Fagdata        | Grep via SPARQL            | Henter eksakte kompetansemål for SAF01-04, 10. trinn       |
+| 2 – Protokoll      | MCP-server                 | Eksponerer Grep som et AI-verktøy; kan oversette til CASE  |
 | 3 – Brukerkontekst | Learner Context (simulert) | Filtrerer og tilpasser svar til konkret elev/trinn/program |
 
 **Konkret demo-scenario – tre steg:**
@@ -198,7 +198,7 @@ internasjonale systemer. Ingen endringer i Grep.
 - Grep-kompetansemål → CASE CFItem
 - Grep-læreplan → CASE CFDocument
 - Grep-fagkoder → CASE kompetanseklasser
-- Via en adapter eller crosswalk blir dataene oversetbare
+- Via en adapter eller crosswalk blir dataene oversettbare
 
 ---
 

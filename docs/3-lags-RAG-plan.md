@@ -54,7 +54,8 @@ Flyten:
 ```
 Bruker spør: "Hva sier norsk læreplan om kildekritikk i 10. klasse?"
        ↓
-SPARQL-spørring mot Grep → returnerer KM1637, kjerneelementer, tilhørende læreplan
+SPARQL-spørring mot Grep → returnerer KM-kode, tittel, kompetansemålsett,
+trinn, læreplan-tittel, og tilknyttede kjerneelementer (kode + tittel)
        ↓
 LLM får: [spørsmål] + [Grep-data som kontekst]
        ↓
@@ -63,9 +64,12 @@ Svar basert på faktisk læreplandata – ikke hallusinert
 
 **Nøkkelpoeng:** Grep er allerede maskinlesbart. Det *er* grunnlaget for en RAG, uten at man trenger å skrape PDFer eller bygge vektordatabase fra scratch.
 
-### Demo-todo
-- [ ] SPARQL-spørring som henter KM1637 med alle metadata (tittel, kode, trinn, kjerneelementer, læreplan)
-- [ ] Prompt-konstruert kontekst sendt til LLM – vise svar vs. hallusinasjon
+### Status: implementert
+
+- [x] SPARQL-spørring mot Grep via `sparql.py` (`hent_kompetansemaal`, `sok_kompetansemaal`)
+- [x] Returnerte felt: KM-kode, tittel, kompetansemålsett, trinn, læreplan-tittel, og tilknyttede kjerneelementer (kode + tittel, pipe-separert via `GROUP_CONCAT`)
+- [x] MCP-server (`server/main.py`) eksponerer Grep-data som AI-verktøy (`grep_hent_kompetansemaal`, `grep_sok_kompetansemaal`)
+- [x] Tre-stegs live demo kjørt med Claude som AI – se `demo/scenario.md`
 
 ---
 
@@ -92,9 +96,11 @@ Nevada-data hentes fra `opensalt.net/uri/{uuid}.json` (speiler satchelcommons.co
 ### Steg 1 – Hent data
 
 ```python
-# Grep: alle 62 KM via REST
-GET https://data.udir.no/kl06/v201906/kompetansemaal-lk20/{kode}
-# → tittel (nob), kode, aarstrinn, kjerneelementer
+# Grep: alle 62 KM via SPARQL eller REST API
+# SPARQL-repoet bygger på REST-APIet – alt som finnes i REST, finnes også i SPARQL
+# Via SPARQL (som i sparql.py): hent_kompetansemaal("SAF01-04", "")
+# Via REST: GET https://data.udir.no/kl06/v201906/kompetansemaal-lk20/{kode}
+# → kode, tittel, aarstrinn, kjerneelementer
 
 # Nevada: alle CFItems av type "Disciplinary Skills Standard"
 GET https://opensalt.net/uri/{uuid}.json
@@ -129,53 +135,59 @@ Kjøres gjerne trinnvis:
 
 ## Innfallsvinkel 3: Ontologi-mapping som bro
 
-I stedet for å bygge en adapter med hardkodet konverteringslogikk, uttrykkes mappingen **deklarativt i ontologien** – som RDF-tripler. Da er det ontologien som gjør jobben, ikke kode.
+Mappingen uttrykkes **deklarativt i ontologien** – som RDF-tripler. Dette gir en normativ, maskinlesbar beskrivelse av koblingen mellom Grep og CASE. I mockupen er dette realisert i to lag: ontologien som deklarasjon, og `case_adapter.py` som oversetter Grep SPARQL-bindings til CASE-strukturer i kjøretid.
 
 ```turtle
-PREFIX grep: <http://psi.udir.no/ontologi/kl06/>
-PREFIX case: <https://purl.imsglobal.org/spec/case/v1p1/schema/context/>
-PREFIX owl:  <http://www.w3.org/2002/07/owl#>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+@prefix u:    <http://psi.udir.no/ontologi/kl06/> .
+@prefix case: <https://purl.imsglobal.org/spec/case/v1p0/vocab#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 # Klasse-mapping
-grep:Kompetansemaal  owl:equivalentClass  case:CFItem .
-grep:Laereplan       owl:equivalentClass  case:CFDocument .
+u:Kompetansemaal     owl:equivalentClass  case:CFItem .
+u:Laereplan          owl:equivalentClass  case:CFDocument .
+u:Kompetansemaalsett skos:closeMatch      case:CFPackage .
 
 # Egenskap-mapping
-grep:tittel          skos:closeMatch          case:fullStatement .
-grep:kode            owl:equivalentProperty   case:humanCodingScheme .
-grep:aarstrinn       owl:equivalentProperty   case:educationLevel .
-grep:id              owl:equivalentProperty   case:identifier .
+u:kode               skos:exactMatch      case:humanCodingScheme .
+u:tittel             skos:exactMatch      case:fullStatement .
 ```
 
 ### Valg av mapping-styrke
 
 | Konstrukt | Betydning | Eksempel |
 |---|---|---|
-| `owl:equivalentProperty` | Identisk semantikk | `grep:kode` ↔ `case:humanCodingScheme` |
-| `owl:equivalentClass` | Identisk klasse | `grep:Kompetansemaal` ↔ `case:CFItem` |
-| `skos:closeMatch` | Nær, men ikke identisk | `grep:tittel` ↔ `case:fullStatement` – Greps tittel er kortere og mer normativ |
+| `owl:equivalentClass` | Identisk klasse | `u:Kompetansemaal` ↔ `case:CFItem`, `u:Laereplan` ↔ `case:CFDocument` |
+| `skos:exactMatch` | Semantisk identisk på tvers av vokabularer | `u:kode` ↔ `case:humanCodingScheme`, `u:tittel` ↔ `case:fullStatement` |
+| `skos:closeMatch` | Nær, men ikke identisk | `u:Kompetansemaalsett` ↔ `case:CFPackage` – trinn-dimensjonen har ingen direkte CASE-ekvivalent |
 
 ### Konsekvens: Grep→CASE-adapter
 
-En ekstern tjeneste bruker disse triplene til automatisk å eksponere Grep-data som gyldige CASE-strukturer:
+Ontologi-mappingen er realisert i to lag:
+
+**Lag 1 – deklarativ ontologi** (`ontologi/grep_case_mapping.ttl`): Definerer koblingene som RDF-tripler, lastet inn i GraphDB.
+
+**Lag 2 – MCP-verktøy** (`server/case_adapter.py` + `server/main.py`): Oversetter Grep SPARQL-bindings til CASE CFDocument/CFItem-struktur i kjøretid.
 
 ```
-Grep REST/SPARQL
+Grep SPARQL-endepunkt (GraphDB)
       ↓
-Grep→CASE-adapter (bruker ontologi-mappingen)
-      ↓  eksponerer:  /ims/case/v1p1/CFDocuments
-      ↓               /ims/case/v1p1/CFItems
-      ↓               /ims/case/v1p1/CFPackages
-CASE Network / Google Classroom
+MCP-server → grep_hent_cfitems() → case_adapter.py
+      ↓  returnerer:  CASE CFDocument
+      ↓               CASE CFItems
+AI-modell (Claude via MCP-klient)
 ```
 
-**Effekt:** Norske kompetansemål blir søkbare og tagbare i Google Classroom på linje med amerikanske standarder – uten at Grep selv endres.
+**Effekt:** Norske kompetansemål eksponeres i CASE-format til AI-modellen – uten at Grep selv endres. En fremtidig REST-adapter (OpenSALT-instans e.l.) kan bruke samme ontologi-mapping til å eksponere `/ims/case/v1p0/CFDocuments` for Google Classroom og andre CASE-kompatible systemer.
 
-### Demo-todo
-- [ ] Skriv ontologi-triplene som en egen Turtle-fil
-- [ ] Vurder om dette kan inngå i Greps eksisterende OWL-ontologi
-- [ ] Skisser adapter-arkitektur (OpenSALT-instans eller enkel Flask-tjeneste)
+### Status: implementert
+
+- [x] Ontologi-tripler skrevet som to Turtle-filer: `ontologi/grep_ontologi.ttl` (normativ OWL) og `ontologi/grep_case_mapping.ttl` (broaksiomer)
+- [x] Begge filer lastet inn i GraphDB (default graph)
+- [x] MCP-verktøy `grep_hent_cfitems` implementert med `case_adapter.py`
+- [x] Live demo kjørt – CASE CFDocument med CFItems returnert for SAF01-04, 10. trinn
+- [ ] Vurder om ontologien kan inngå i Greps eksisterende OWL-ontologi (fremtidig steg)
+- [ ] REST-adapter for eksponering mot CASE Network / Google Classroom (fremtidig steg)
 
 ---
 

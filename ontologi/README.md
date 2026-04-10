@@ -10,11 +10,25 @@ i GraphDB-repoet `grep-mcp-mockup` i rekkefølgen angitt nedenfor.
 | `grep_ontologi.ttl` | Normativ ontologi: klasser og egenskaper i Grep-modellen (LK20) |
 | `grep_case_mapping.ttl` | CASE-broaksiomer: kobling fra Grep til CASE/CFItem |
 
+## Graf-struktur i GraphDB
+
+| Graf | Innhold |
+|---|---|
+| Default graph | Grep JSON-LD-dump (allerede lastet) |
+| `urn:graph:grep-ontologi` | `grep_ontologi.ttl` |
+| `urn:graph:grep-case-mapping` | `grep_case_mapping.ttl` |
+
+Grep-dataene ligger i default graph og røres ikke. Ontologi-filene lastes
+inn som named graphs slik at de kan oppdateres uavhengig av dataene.
+Eksisterende SPARQL-spørringer mot default graph fungerer uendret, siden
+GraphDB inkluderer alle named graphs i default graph som union.
+
 ## Laste-rekkefølge i GraphDB Workbench
 
-1. Last inn Grep JSON-LD-dump (i eget named graph, f.eks. `<urn:graph:grep-data>`)
-2. Last inn `grep_ontologi.ttl`
-3. Last inn `grep_case_mapping.ttl`
+1. Last inn `grep_ontologi.ttl` med target graph `urn:graph:grep-ontologi`
+2. Last inn `grep_case_mapping.ttl` med target graph `urn:graph:grep-case-mapping`
+
+Grep JSON-LD-dump er allerede lastet i default graph – ingen endringer der.
 
 ## Omfang
 

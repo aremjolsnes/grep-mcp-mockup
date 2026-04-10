@@ -93,6 +93,30 @@ u:Kompetansemaalsett_lk20
     rdfs:comment "Et sett med kompetansemål som gjelder for et spesifisert sett med trinn eller nivåer i LK20-læreplaner."@nb ;
     rdfs:comment "A set of competence aims that apply to a specified set of steps or levels in LK20-curricula."@en .
 
+u:Kjerneelement
+    a owl:Class ;
+    rdfs:label "Kjerneelement"@nb ;
+    rdfs:label "Core element"@en ;
+    rdfs:comment """Element som, sammen med de andre i samme læreplan, uttrykker hva som er det
+        viktigste i faget og hva elevene/lærlingene/praksiskandidatene må lære for å mestre og
+        bruke faget (kan være kunnskapsområder, metoder, begreper, tenkemåter og uttrykksformer).
+        Abstrakt superklasse – bruk u:Kjerneelement_lk20 for LK20-data."""@nb ;
+    rdfs:comment """Element which, together with the others in the same curriculum, expresses what is
+        most important in the subject and what the students/apprentices/practice candidates must learn
+        in order to master and use the subject (can be areas of knowledge, methods, concepts, ways of
+        thinking and forms of expression).
+        Abstract superclass – use u:Kjerneelement_lk20 for LK20 data."""@en .
+
+u:Kjerneelement_lk20
+    a owl:Class ;
+    rdfs:subClassOf u:Kjerneelement ;
+    rdfs:label "Kjerneelement (LK20)"@nb ;
+    rdfs:label "Core element (LK20)"@en ;
+    rdfs:comment """Kjerneelement slik det er definert i Kunnskapsløftet 2020 (LK20), fagfornyelsen.
+        Dette er den konkrete klassen som brukes i Greps triplestore."""@nb ;
+    rdfs:comment """Core element as defined in the Norwegian Knowledge Promotion 2020 (LK20).
+        This is the concrete class used in the Grep triplestore."""@en .
+
 u:Aarstrinn
     a owl:Class ;
     rdfs:label "Årstrinn"@nb ;
@@ -133,6 +157,26 @@ u:etter-aarstrinn
         the learner will have acquired the competences described by the set."""@en ;
     rdfs:domain u:Kompetansemaalsett ;
     rdfs:range  u:Aarstrinn .
+
+u:kjerneelementer
+    a owl:ObjectProperty ;
+    rdfs:label "kjerneelementer"@nb ;
+    rdfs:label "core elements"@en ;
+    rdfs:comment """Egenskap for læreplan (LK20) for å angi hvilke kjerneelementer den har."""@nb ;
+    rdfs:comment """Property for curriculum (LK20) to indicate which core elements it has."""@en ;
+    rdfs:domain u:Laereplan_lk20 ;
+    rdfs:range  u:Kjerneelement_lk20 .
+
+u:tilknyttede-kjerneelementer
+    a owl:ObjectProperty ;
+    rdfs:label "tilknyttede kjerneelementer"@nb ;
+    rdfs:label "associated core elements"@en ;
+    rdfs:comment """Egenskap for kompetansemål for å angi en relasjon til kjerneelementer.
+        Et kompetansemål kan være knyttet til ett eller flere kjerneelementer i læreplanen."""@nb ;
+    rdfs:comment """Property for competence aim to specify a relationship to core elements.
+        A competence aim may be associated with one or more core elements in the curriculum."""@en ;
+    rdfs:domain u:Kompetansemaal ;
+    rdfs:range  u:Kjerneelement_lk20 .
 
 
 # =============================================================================
