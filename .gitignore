@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtuelle miljøer
+venv/
+
+# Claude Code (lokal konfig og minne)
+.claude/
+
+# Midlertidige filer
+response.txt

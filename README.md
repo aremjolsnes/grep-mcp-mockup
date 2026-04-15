@@ -42,6 +42,31 @@ python server/sparql.py   # Test SPARQL-tilkobling
 python server/main.py     # Start MCP-server
 ```
 
+## Claude Code-oppsett
+
+Repoet inkluderer `.mcp.json` som registrerer MCP-serveren automatisk når du åpner prosjektet i Claude Code.
+
+I tillegg trenger du en lokal tillatelseskonfig som **ikke** er inkludert i repoet (siden den er maskinspesifikk). Opprett filen manuelt:
+
+```bash
+mkdir -p .claude
+```
+
+`.claude/settings.local.json`:
+```json
+{
+  "permissions": {
+    "allow": [
+      "mcp__grep__grep_hent_kompetansemaal",
+      "mcp__grep__grep_hent_cfitems",
+      "mcp__grep__grep_sok_kompetansemaal"
+    ]
+  }
+}
+```
+
+Uten denne filen vil Claude Code be om tillatelse ved hvert verktøykall under demoen.
+
 ## MCP-verktøy
 
 Serveren eksponerer to verktøy:
