@@ -8,24 +8,46 @@ topic: [Grep, CASE, RAG]
 
 # Taleplan: Grep og CASE-interoperabilitet
 
+## Fra programmet
+### Day 2 – AI, Data, and Trust. (09.00 – 15.00)
+To examine how AI can be integrated into education systems through interoperable data,
+governed by trusted frameworks and aligned with national priorities.
+#### 09:00 – 12:00 | AI, Data Access, and Trust in Education
+**Audience:** All participants
+**Focus:** To provide a view of how AI relies on interoperable data, and how trust, governance, and standards enable its responsible use in education. The session will look at
+demonstrations and examples for standard based ways to access data from AI, Model Context Protocol, Learner Context and Generative AI.
+Speakers
+• 1EdTech (data standards, MCP, interoperability, AI integration)
+• Udir / Sikt
+  • Share any ongoing use-cases
+  • implementation perspective, infrastructure and data access
+Not final – suggestions welcome
+
+Mitt bidrag blir da: Udir: "Share any ongoing use-cases" og "implementation perspective, infrastructure and data access", og innlegget kan holdes på norsk.
+
 ## Introduksjon (3–4 minutter)
-**Hovedpoeng: Grep er norsk, maskinlesbar realitet. CASE er internasjonal bro.**
+**Hovedpoeng: Norge har allerede det andre land jobber mot. Grep er maskinlesbar realitet.**
 
-### Hva handler denne sesjonen om?
+### Et spørsmål fra en internasjonal ekspert
 
-- Vi snakker om hvordan norsk læreplandata (Grep) kan gjøres tilgjengelig internasjonalt gjennom CASE
-- Hvorfor strukturerte data betyr noe for både AI og internasjonale læringsstandarder
+Colin Smyth, som jobber med CASE internasjonalt, stilte meg nylig et godt spørsmål:
+
+> «Hva skal Norge med CASE – dere har jo Grep?»
+
+Det er et ærlig spørsmål. Og svaret er at han har et poeng.
+Norge har noe de fleste land bare drømmer om: ett sentralt, autoritativt, maskinlesbart læreplanregister.
+I dag skal jeg vise hva vi kan gjøre med det – og så, til slutt, vise at vi kan oversette det til CASE også, bare fordi vi kan.
 
 ### Hvem er jeg og hva er min rolle?
 
 - Udir, arbeid med Grep og semantisk teknologi
-- Fokus på å gjøre læreplandata maskinlesbar
+- Fokus på å gjøre læreplandata maskinlesbar og nyttig for AI-systemer
 
-### Tre hovedspor i dag:
+### Tre spor i dag:
 
-1. Hva er Grep?
-2. Hvorfor betyr struktur og AI noe?
-3. Hvordan blir CASE relevant selv når vi har Grep?
+1. Hva er Grep, og hvorfor er det bra utgangspunkt?
+2. Hvordan bruker vi Grep til AI – konkret demo med MCP
+3. Og ja – vi kan også CASE, fordi strukturerte data åpner for det
 
 ---
 
@@ -167,21 +189,21 @@ internasjonale systemer. Ingen endringer i Grep.
 
 ---
 
-## Hvorfor Grep alene ikke er nok: CASE og internasjonalisering (6–7 minutter)
-**Hovedpoeng: CASE gjør at norske data og internasjonal praksis kan kommunisere.**
+## CASE – fordi vi kan (6–7 minutter)
+**Hovedpoeng: Grep er godt nok. Men siden vi har strukturerte data, kan vi også snakke CASE.**
 
 ### Hva er CASE?
 
 - Competency and Academic Standards Exchange – internasjonal standard for å beskrive læringsrammer
 - Brukt i USA, Europa, internasjonale edtech-plattformer
-- Lik Grep (struktur, koder), men internasjonal konvensjon
+- Lik Grep i konsept (struktur, koder, hierarki), men internasjonal konvensjon
 
-### Hvorfor trenger Norge både Grep og CASE?
+### Grep er ikke problemet – det er løsningen
 
-- Grep er nasjonalt, perfekt optimalisert for norsk kontekst
-- Men: norske elever skal kunne sammenlignes internasjonalt
-- Internasjonale arbeidsgivere vil forstå norske kvalifikasjoner
-- Internasjonale plattformer (Coursera, Udemy, EU-dokumentasjon) bruker CASE
+- Norge har ikke et problem med læreplandata. Vi har Grep.
+- CASE er ikke noe vi *må* ha – det er noe vi *kan* bruke fordi Grep allerede er strukturert
+- Siden data er formalisert, kan vi mappe Grep til CASE uten å endre Grep selv
+- Det er dette som er styrken med strukturerte data: de er oversettbare
 
 ### Konkret eksempel: Nevada vs. Norge
 
@@ -225,18 +247,25 @@ internasjonale systemer. Ingen endringer i Grep.
 ---
 
 ## Konklusjon og diskusjon (2–3 minutter)
-**Hovedpoeng: Grep er starten; CASE er åpningen.**
+**Hovedpoeng: Vi er ikke bak. Vi er foran.**
+
+### Vi svarer på Colins spørsmål
+
+Colin spurte: «Hva skal Norge med CASE?»
+Svaret er: vi trenger det ikke – men vi *kan* bruke det, og det er nettopp poenget.
+Grep gir oss friheten til å velge.
 
 ### Vi har det norske på plass
 
-- Grep er maskinlesbar, strukturert og driftet
+- Grep er maskinlesbar, strukturert og driftet – det er ikke alle land som kan si det
 - Perfekt grunnlag for AI (RAG), søk og automatisering
+- Og nå har vi vist: kan brukes som kilde for CASE-kompatible systemer uten å endre noe
 
-### Neste steg
+### Neste steg – hvis vi vil
 
-- Koble Grep til internasjonale standarder som CASE
-- Gjøre norske læreplandata tilgjengelig globalt
-- Skape muligheter for bedre kvalitetskontroll og samarbeid
+- En enkel adapter mellom Grep og CASE kan åpne for internasjonale plattformer
+- Gjøre norske læreplandata synlige globalt – på Norges premisser
+- Utgangspunktet er godt. Spørsmålet er hva vi vil bruke det til.
 
 ### Diskusjonsspørsmål for gruppa
 
