@@ -113,11 +113,14 @@ class GrepSparqlClient:
         WHERE {{
             ?km a u:kompetansemaal_lk20 ;
                 u:kode ?kmCode ;
-                u:tittel ?title ;
                 u:tilhoerer-kompetansemaalsett ?kms ;
                 u:tilhoerer-laereplan ?curriculum .
 
             {curriculum_filter}
+
+            OPTIONAL {{ ?km u:tittel ?titleEng     . FILTER (LANG(?titleEng)     = "eng")     }}
+            OPTIONAL {{ ?km u:tittel ?titleDefault . FILTER (LANG(?titleDefault) = "default") }}
+            BIND(COALESCE(?titleEng, ?titleDefault) AS ?title)
 
             ?curriculum u:tittel ?currTitle .
 
@@ -135,7 +138,6 @@ class GrepSparqlClient:
             }}
 
             FILTER (
-                LANG(?title) = "default" &&
                 LANG(?kmsTitle) = "default" &&
                 LANG(?gradeLabel) = "default" &&
                 LANG(?gradeShort) = "default" &&
