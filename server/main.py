@@ -34,7 +34,7 @@ def grep_hent_kompetansemaal(laereplan_kode: str, trinn: str) -> list[dict]:
     Returns:
         List of competence aims. Each element contains:
         - kmCode: Competence aim code (e.g. KM7817)
-        - title: Competence aim text in the official language
+        - title: Competence aim text in English where available, Norwegian otherwise
         - kmsTitle: Name of the competence aim set
         - gradeLabel: Grade description (e.g. '10. trinn')
         - currTitle: Curriculum title
@@ -92,7 +92,7 @@ def grep_hent_cfitems(laereplan_kode: str, trinn: str) -> dict:
         Each CFItem contains:
         - identifier: URI of the competence aim
         - humanCodingScheme: Competence aim code (e.g. KM1638)
-        - fullStatement: Competence aim text
+        - fullStatement: Competence aim text in English where available, Norwegian otherwise
         - educationLevel: List with grade description
         - CFDocumentURI: Reference to the curriculum (identifier + title)
     """

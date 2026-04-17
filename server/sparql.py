@@ -87,7 +87,9 @@ class GrepSparqlClient:
                    Pass empty string for no grade filtering.
 
         Returns:
-            List of competence aims with their details
+            List of competence aims with their details. The 'title' field uses
+            the English translation (lang=eng) where available, falling back to
+            the default (Norwegian) title otherwise.
         """
         curriculum_filter = (
             f"FILTER (?curriculum = d:{curriculum_code})"
