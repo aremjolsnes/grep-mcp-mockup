@@ -1,141 +1,126 @@
----
-tags: [research]
-creation-date: 2026-04-07 09:00
-type: prosjekt
-status: ua
-topic:
-  - Grep
-  - CASE
-  - RAG
-  - AI
-  - interoperabilitet
----
+# Three-layer RAG plan
 
-# 3-lags RAG-plan
-
-Relatert: [[Research - Grep og CASE interoperabilitet/]] | [[2026-03-30-Møte-Interoperabilitet-Grep-CASE]]
-
-Plan for hvordan Grep og CASE kan kombineres i en RAG-arkitektur for AI-assistert komparativ læreplananalyse.
+Plan for how Grep and CASE can be combined in a RAG architecture for AI-assisted comparative curriculum analysis.
 
 ---
 
-## Tre innfallsvinkler – oversikt
+## Three angles — overview
 
-Vi har tre distinkte innfallsvinkler som henger sammen, men kan presenteres uavhengig:
+Three distinct angles that are connected but can be presented independently:
 
-| # | Innfallsvinkel | Poeng | Publikum |
+| # | Angle | Point | Audience |
 |---|---|---|---|
-| 1 | **Grep som RAG-grunnlag** | AI som bruker Grep hallusinerer ikke læreplaner | Bredt – alle |
-| 2 | **AI-generert crosswalk: Grep ↔ Nevada** | Strukturerte data gjør komparativ analyse mulig på tvers av land | Pedagoger, policyfolk |
-| 3 | **Ontologi-mapping som bro** | En adapter kan eksponere Grep som CASE uten å endre Grep | Tim Couper, teknisk publikum |
+| 1 | **Grep as RAG foundation** | AI using Grep does not hallucinate curricula | Broad — everyone |
+| 2 | **AI-generated crosswalk: Grep ↔ Nevada** | Structured data enables comparative analysis across countries | Educators, policy people |
+| 3 | **Ontology mapping as bridge** | An adapter can expose Grep as CASE without modifying Grep | Tim Couper, technical audience |
 
-### Sammenheng
+### How they connect
 
 ```
-Ontologi-mapping (3)
-      ↓ gjør mulig
-Grep→CASE-adapter
-      ↓ gir data til
+Ontology mapping (3)
+      ↓ enables
+Grep→CASE adapter
+      ↓ provides data to
 RAG (1) + Crosswalk (2)
-      ↓ brukes av
-AI som svarer presist om norske og internasjonale læreplaner
+      ↓ used by
+AI that answers precisely about Norwegian and international curricula
 ```
 
 ---
 
-## Innfallsvinkel 1: Grep som RAG-grunnlag
+## Angle 1: Grep as RAG foundation
 
-En RAG trenger en **retriever** og en **generator**. For Grep er det naturlige valget:
+A RAG needs a **retriever** and a **generator**. For Grep the natural choice is:
 
-- **Retriever:** SPARQL-endepunktet *er* retrieveren. I stedet for vektordatabase henter man strukturerte RDF-data direkte. Det gir *presis* gjenfinning – ikke fuzzy embedding-søk.
-- **Generator:** En LLM (GPT-4, Claude osv.) som får Grep-data som kontekst i prompten.
+- **Retriever:** The SPARQL endpoint *is* the retriever. Instead of a vector database, structured RDF data is fetched directly. This gives *precise* retrieval — not fuzzy embedding search.
+- **Generator:** An LLM (GPT-4, Claude, etc.) that receives Grep data as context in the prompt.
 
-Flyten:
+Flow:
 ```
-Bruker spør: "Hva sier norsk læreplan om kildekritikk i 10. klasse?"
+User asks: "What does the Norwegian curriculum say about source criticism in grade 10?"
        ↓
-SPARQL-spørring mot Grep → returnerer KM-kode, tittel, kompetansemålsett,
-trinn, læreplan-tittel, og tilknyttede kjerneelementer (kode + tittel)
+SPARQL query against Grep → returns competence aim code, title, competence aim set,
+grade, curriculum title, and associated core elements (code + title)
        ↓
-LLM får: [spørsmål] + [Grep-data som kontekst]
+LLM receives: [question] + [Grep data as context]
        ↓
-Svar basert på faktisk læreplandata – ikke hallusinert
+Answer based on actual curriculum data — not hallucinated
 ```
 
-**Nøkkelpoeng:** Grep er allerede maskinlesbart. Det *er* grunnlaget for en RAG, uten at man trenger å skrape PDFer eller bygge vektordatabase fra scratch.
+**Key point:** Grep is already machine-readable. It *is* the foundation for a RAG, without needing to scrape PDFs or build a vector database from scratch.
 
-### Status: implementert
+### Status: implemented
 
-- [x] SPARQL-spørring mot Grep via `sparql.py` (`hent_kompetansemaal`, `sok_kompetansemaal`)
-- [x] Returnerte felt: KM-kode, tittel, kompetansemålsett, trinn, læreplan-tittel, og tilknyttede kjerneelementer (kode + tittel, pipe-separert via `GROUP_CONCAT`)
-- [x] MCP-server (`server/main.py`) eksponerer Grep-data som AI-verktøy (`grep_hent_kompetansemaal`, `grep_sok_kompetansemaal`)
-- [x] Tre-stegs live demo kjørt med Claude som AI – se `demo/scenario.md`
+- [x] SPARQL query against Grep via `sparql.py` (`hent_kompetansemaal`, `sok_kompetansemaal`)
+- [x] Returned fields: competence aim code, title, competence aim set, grade, curriculum title, and associated core elements (code + title, pipe-separated via `GROUP_CONCAT`)
+- [x] MCP server (`server/main.py`) exposes Grep data as AI tools (`grep_hent_kompetansemaal`, `grep_sok_kompetansemaal`)
+- [x] Three-step live demo run with Claude as AI — see `demo/scenario.md`
 
 ---
 
-## Innfallsvinkel 2: AI-generert crosswalk: Grep ↔ Nevada
+## Angle 2: AI-generated crosswalk: Grep ↔ Nevada
 
-### Anker-eksempel
+### Anchor example
 
-| Grep | Tittel (nb) | CASE | fullStatement |
+| Grep | Title (nb) | CASE | fullStatement |
 |---|---|---|---|
 | KM1637 | "vurdere på hvilke måter ulike kilder gir informasjon om et samfunnsfaglig tema..." | SS.9-12.CE.1 | "When constructing compelling questions, reference points of agreement and disagreement..." |
 
-Begge handler om kildebevissthet, faglig tenking og perspektivmangfold. Nevada er videregående (9–12), Grep er 10. trinn – nesten samme alder, nesten samme ambisjon.
+Both deal with source awareness, disciplinary thinking, and perspective diversity. Nevada is high school (9–12), Grep is grade 10 — nearly the same age, nearly the same ambition.
 
-### Volum
+### Volume
 
-| | Antall |
+| | Count |
 |---|---|
-| Grep SAF01-04 kompetansemål | **62** (13 + 13 + 17 + 19 fordelt på 2., 4., 7., 10. trinn) |
-| Nevada Social Studies – trinnstruktur | KG–12, organisert i 9 toppnoder |
-| Mest relevant å sammenligne | Grep 10. trinn ↔ Nevada 9–12 / Grep 7. trinn ↔ Nevada 6–8 |
+| Grep SAF01-04 competence aims | **62** (13 + 13 + 17 + 19 across grades 2, 4, 7, 10) |
+| Nevada Social Studies — grade structure | KG–12, organised in 9 top nodes |
+| Most relevant to compare | Grep grade 10 ↔ Nevada 9–12 / Grep grade 7 ↔ Nevada 6–8 |
 
-Nevada-data hentes fra `opensalt.net/uri/{uuid}.json` (speiler satchelcommons.com).
+Nevada data fetched from `opensalt.net/uri/{uuid}.json` (mirrors satchelcommons.com).
 
-### Steg 1 – Hent data
+### Step 1 – Fetch data
 
 ```python
-# Grep: alle 62 KM via SPARQL eller REST API
-# SPARQL-repoet bygger på REST-APIet – alt som finnes i REST, finnes også i SPARQL
-# Via SPARQL (som i sparql.py): hent_kompetansemaal("SAF01-04", "")
-# Via REST: GET https://data.udir.no/kl06/v201906/kompetansemaal-lk20/{kode}
-# → kode, tittel, aarstrinn, kjerneelementer
+# Grep: all 62 competence aims via SPARQL or REST API
+# The SPARQL repo builds on the REST API — everything in REST is also in SPARQL
+# Via SPARQL (as in sparql.py): hent_kompetansemaal("SAF01-04", "")
+# Via REST: GET https://data.udir.no/kl06/v201906/kompetansemaal-lk20/{code}
+# → code, title, grade, core elements
 
-# Nevada: alle CFItems av type "Disciplinary Skills Standard"
+# Nevada: all CFItems of type "Disciplinary Skills Standard"
 GET https://opensalt.net/uri/{uuid}.json
 # → fullStatement, humanCodingScheme, educationLevel, CFItemType
 ```
 
-### Steg 2 – Bygg prompt
+### Step 2 – Build prompt
 
-Send begge lister til LLM med prompt:
+Send both lists to the LLM with prompt:
 
-> "Her er alle norske kompetansemål i samfunnsfag (Grep SAF01-04) og alle Nevada Social Studies standards. For hvert norske kompetansemål, finn det Nevada-elementet som matcher best semantisk. Angi matchkvalitet (høy / middels / lav) og en kort begrunnelse."
+> "Here are all Norwegian competence aims in social studies (Grep SAF01-04) and all Nevada Social Studies standards. For each Norwegian competence aim, find the Nevada element that matches best semantically. Indicate match quality (high / medium / low) and a brief justification."
 
-Kjøres gjerne trinnvis:
-- Grep 10. trinn (19 KM) ↔ Nevada 9–12
-- Grep 7. trinn (17 KM) ↔ Nevada 6–8
-- osv.
+Run step by step:
+- Grep grade 10 (19 aims) ↔ Nevada 9–12
+- Grep grade 7 (17 aims) ↔ Nevada 6–8
+- etc.
 
-### Steg 3 – Output
+### Step 3 – Output
 
-| Grep-kode | Grep-tittel (forkortet) | Nevada-kode | Nevada-fullStatement (forkortet) | Match |
+| Grep code | Grep title (shortened) | Nevada code | Nevada fullStatement (shortened) | Match |
 |---|---|---|---|---|
-| KM1637 | "vurdere på hvilke måter ulike kilder..." | SS.9-12.CE.1 | "When constructing compelling questions..." | Høy |
+| KM1637 | "vurdere på hvilke måter ulike kilder..." | SS.9-12.CE.1 | "When constructing compelling questions..." | High |
 | ... | ... | ... | ... | ... |
 
-### Demo-todo
-- [ ] Hent alle Nevada CFItems av type `Disciplinary Skills Standard` for 6–8 og 9–12 og lagre som JSON
-- [ ] Hent alle 62 Grep SAF-kompetansemål og lagre som JSON
-- [ ] Kjør AI-mapping trinnvis og bygg crosswalk-tabell
-- [ ] Vurder om output egner seg som `skos:closeMatch`-tripler i Turtle
+### Demo todo
+- [ ] Fetch all Nevada CFItems of type `Disciplinary Skills Standard` for 6–8 and 9–12 and save as JSON
+- [ ] Fetch all 62 Grep SAF competence aims and save as JSON
+- [ ] Run AI mapping step by step and build crosswalk table
+- [ ] Consider whether output is suitable as `skos:closeMatch` triples in Turtle
 
 ---
 
-## Innfallsvinkel 3: Ontologi-mapping som bro
+## Angle 3: Ontology mapping as bridge
 
-Mappingen uttrykkes **deklarativt i ontologien** – som RDF-tripler. Dette gir en normativ, maskinlesbar beskrivelse av koblingen mellom Grep og CASE. I mockupen er dette realisert i to lag: ontologien som deklarasjon, og `case_adapter.py` som oversetter Grep SPARQL-bindings til CASE-strukturer i kjøretid.
+The mapping is expressed **declaratively in the ontology** — as RDF triples. This provides a normative, machine-readable description of the connection between Grep and CASE. In the mockup this is realised in two layers: the ontology as declaration, and `case_adapter.py` as runtime translator.
 
 ```turtle
 @prefix u:    <http://psi.udir.no/ontologi/kl06/> .
@@ -143,55 +128,48 @@ Mappingen uttrykkes **deklarativt i ontologien** – som RDF-tripler. Dette gir 
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-# Klasse-mapping
+# Class mappings
 u:Kompetansemaal     owl:equivalentClass  case:CFItem .
 u:Laereplan          owl:equivalentClass  case:CFDocument .
 u:Kompetansemaalsett skos:closeMatch      case:CFPackage .
 
-# Egenskap-mapping
+# Property mappings
 u:kode               skos:exactMatch      case:humanCodingScheme .
 u:tittel             skos:exactMatch      case:fullStatement .
 ```
 
-### Valg av mapping-styrke
+### Choice of mapping strength
 
-| Konstrukt | Betydning | Eksempel |
+| Construct | Meaning | Example |
 |---|---|---|
-| `owl:equivalentClass` | Identisk klasse | `u:Kompetansemaal` ↔ `case:CFItem`, `u:Laereplan` ↔ `case:CFDocument` |
-| `skos:exactMatch` | Semantisk identisk på tvers av vokabularer | `u:kode` ↔ `case:humanCodingScheme`, `u:tittel` ↔ `case:fullStatement` |
-| `skos:closeMatch` | Nær, men ikke identisk | `u:Kompetansemaalsett` ↔ `case:CFPackage` – trinn-dimensjonen har ingen direkte CASE-ekvivalent |
+| `owl:equivalentClass` | Identical class | `u:Kompetansemaal` ↔ `case:CFItem`, `u:Laereplan` ↔ `case:CFDocument` |
+| `skos:exactMatch` | Semantically identical across vocabularies | `u:kode` ↔ `case:humanCodingScheme`, `u:tittel` ↔ `case:fullStatement` |
+| `skos:closeMatch` | Close, but not identical | `u:Kompetansemaalsett` ↔ `case:CFPackage` — the grade dimension has no direct CASE equivalent |
 
-### Konsekvens: Grep→CASE-adapter
+### Consequence: Grep→CASE adapter
 
-Ontologi-mappingen er realisert i to lag:
+The ontology mapping is realised in two layers:
 
-**Lag 1 – deklarativ ontologi** (`ontologi/grep_case_mapping.ttl`): Definerer koblingene som RDF-tripler, lastet inn i GraphDB.
+**Layer 1 — declarative ontology** (`ontologi/grep_case_mapping.ttl`): Defines the mappings as RDF triples, loaded into GraphDB.
 
-**Lag 2 – MCP-verktøy** (`server/case_adapter.py` + `server/main.py`): Oversetter Grep SPARQL-bindings til CASE CFDocument/CFItem-struktur i kjøretid.
+**Layer 2 — MCP tool** (`server/case_adapter.py` + `server/main.py`): Translates Grep SPARQL bindings to CASE CFDocument/CFItem structures at runtime.
 
 ```
-Grep SPARQL-endepunkt (GraphDB)
+Grep SPARQL endpoint (GraphDB)
       ↓
-MCP-server → grep_hent_cfitems() → case_adapter.py
-      ↓  returnerer:  CASE CFDocument
-      ↓               CASE CFItems
-AI-modell (Claude via MCP-klient)
+MCP server → grep_hent_cfitems() → case_adapter.py
+      ↓  returns:  CASE CFDocument
+      ↓            CASE CFItems
+AI model (Claude via MCP client)
 ```
 
-**Effekt:** Norske kompetansemål eksponeres i CASE-format til AI-modellen – uten at Grep selv endres. En fremtidig REST-adapter (OpenSALT-instans e.l.) kan bruke samme ontologi-mapping til å eksponere `/ims/case/v1p0/CFDocuments` for Google Classroom og andre CASE-kompatible systemer.
+**Effect:** Norwegian competence aims are exposed in CASE format to the AI model — without modifying Grep itself. A future REST adapter (OpenSALT instance etc.) could use the same ontology mapping to expose `/ims/case/v1p0/CFDocuments` for Google Classroom and other CASE-compatible systems.
 
-### Status: implementert
+### Status: implemented
 
-- [x] Ontologi-tripler skrevet som to Turtle-filer: `ontologi/grep_ontologi.ttl` (normativ OWL) og `ontologi/grep_case_mapping.ttl` (broaksiomer)
-- [x] Begge filer lastet inn i GraphDB (default graph)
-- [x] MCP-verktøy `grep_hent_cfitems` implementert med `case_adapter.py`
-- [x] Live demo kjørt – CASE CFDocument med CFItems returnert for SAF01-04, 10. trinn
-- [ ] Vurder om ontologien kan inngå i Greps eksisterende OWL-ontologi (fremtidig steg)
-- [ ] REST-adapter for eksponering mot CASE Network / Google Classroom (fremtidig steg)
-
----
-
-## Relaterte notater
-- [[Research - Grep og CASE interoperabilitet]]
-- [[Grep]]
-- [[SPARQL]]
+- [x] Ontology triples written as two Turtle files: `ontologi/grep_ontologi.ttl` (normative OWL) and `ontologi/grep_case_mapping.ttl` (bridge axioms)
+- [x] Both files loaded into GraphDB (default graph)
+- [x] MCP tool `grep_hent_cfitems` implemented with `case_adapter.py`
+- [x] Live demo run — CASE CFDocument with CFItems returned for SAF01-04, grade 10
+- [ ] Consider whether the ontology can be incorporated into Grep's existing OWL ontology (future step)
+- [ ] REST adapter for exposure to CASE Network / Google Classroom (future step)

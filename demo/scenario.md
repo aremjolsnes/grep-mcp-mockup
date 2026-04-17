@@ -1,32 +1,32 @@
-# Demo-scenario: Demokrati og valg på 10. trinn
+# Demo scenario: Democracy and elections in grade 10
 
-## Bakgrunn
+## Background
 
-Dette scenariet demonstrerer tre lag i kombinasjon:
+This scenario demonstrates three layers working in combination:
 
-| Lag | Teknologi | Rolle |
+| Layer | Technology | Role |
 |---|---|---|
-| **1. Grep via SPARQL** | GraphDB + MCP-server | Henter eksakte kompetansemål fra Greps triplestore |
-| **2. MCP-server** | FastMCP + Python | Eksponerer Grep som AI-verktøy – i Grep-format og CASE-format |
-| **3. Learner Context** | Simulert brukerprofil | Tilpasser AI-svaret til klassens konkrete situasjon |
+| **1. Grep via SPARQL** | GraphDB + MCP server | Retrieves exact competence aims from Grep's triplestore |
+| **2. MCP server** | FastMCP + Python | Exposes Grep as an AI tool — in Grep format and CASE format |
+| **3. Learner Context** | Simulated user profile | Tailors the AI response to the class's specific situation |
 
 ---
 
-## Spørsmål fra lærer
+## Teacher's question
 
-> «Hvilke kompetansemål i samfunnsfag er relevante for et prosjekt om demokrati og valg?»
+> "Which competence aims in social studies are relevant for a project on democracy and elections?"
 
 ---
 
-## Steg 1 – Grep via MCP, uten Learner Context
+## Step 1 – Grep via MCP, without Learner Context
 
-AI-en bruker MCP-verktøyet `grep_hent_kompetansemaal("SAF01-04", "10")` og henter alle
-19 kompetansemål for 10. trinn direkte fra Greps triplestore.
+The AI uses the MCP tool `grep_hent_kompetansemaal("SAF01-04", "10")` and retrieves all
+19 competence aims for grade 10 directly from Grep's triplestore.
 
-**Eksempel på AI-svar:**
+**Example AI response:**
 
-> Her er kompetansemålene i samfunnsfag (SAF01-04) for 10. trinn som er relevante for
-> et prosjekt om demokrati og valg:
+> Here are the competence aims in social studies (SAF01-04) for grade 10 that are relevant for
+> a project on democracy and elections:
 >
 > - **KM1648** – reflektere over kva for aktørar som har makt i samfunnet i dag, og korleis
 >   desse grunngir standpunkta sine
@@ -36,18 +36,18 @@ AI-en bruker MCP-verktøyet `grep_hent_kompetansemaal("SAF01-04", "10")` og hent
 >   samfunnet og samstundes har vore og er påverka av geografiske forhold og historisk kontekst
 > - **KM1651** – beskrive sentrale lover, reglar og normer og drøfte kva konsekvensar brot på
 >   desse kan ha for den enkelte og for samfunnet
-> - *(+ 15 øvrige KM for 10. trinn)*
+> - *(+ 15 remaining competence aims for grade 10)*
 
-Svaret er korrekt, men generisk – AI-en vet ikke hva klassen allerede har gjennomgått.
+The response is correct, but generic — the AI does not know what the class has already covered.
 
 ---
 
-## Steg 2 – Med Learner Context
+## Step 2 – With Learner Context
 
-Læreren legger inn brukerprofilen fra `learner_context.json` øverst i prompten:
+The teacher adds the user profile from `learner_context.json` at the top of the prompt:
 
 ```
-Du er en pedagogisk assistent. Her er konteksten for denne klassen:
+You are a pedagogical assistant. Here is the context for this class:
 
 {
   "rolle": "lærer",
@@ -56,38 +56,38 @@ Du er en pedagogisk assistent. Her er konteksten for denne klassen:
   "gjennomgaatt": ["KM1638", "KM1640", "KM1643"]
 }
 
-Hvilke kompetansemål i samfunnsfag er relevante for et prosjekt om demokrati og valg?
-Ta hensyn til at de allerede gjennomgåtte målene ikke trenger å prioriteres.
+Which competence aims in social studies are relevant for a project on democracy and elections?
+Take into account that the already covered aims do not need to be prioritised.
 ```
 
-AI-en bruker fortsatt `grep_hent_kompetansemaal` via MCP, men tilpasser svaret til profilen.
+The AI still uses `grep_hent_kompetansemaal` via MCP, but tailors the response to the profile.
 
-**Eksempel på AI-svar:**
+**Example AI response:**
 
-> Basert på klassens progresjon anbefaler jeg å prioritere disse kompetansemålene:
+> Based on the class's progress, I recommend prioritising these competence aims:
 >
-> **Neste steg – direkte relevante for prosjektet:**
-> - **KM1648** – makt i samfunnet (hvem bestemmer, og hvordan begrunnes det?)
-> - **KM1652** – det politiske systemet og velferdssamfunnet i Norge
+> **Next steps — directly relevant for the project:**
+> - **KM1648** – power in society (who decides, and how is it justified?)
+> - **KM1652** – the political system and the welfare state in Norway
 >
-> **Støttende – kan trekkes inn som forkunnskaper:**
-> - KM1643 (mangfold og identitet, allerede gjennomgått) – nyttig som inngang til
->   diskusjon om demokratiske verdier
+> **Supporting — can be drawn in as prior knowledge:**
+> - KM1643 (diversity and identity, already covered) — useful as an entry point for
+>   discussion of democratic values
 >
-> KM1638 (teknologi) og KM1640 (geografi/levekår) er gjennomgått og trenger ikke
-> prioriteres, men kan nevnes som kontekst ved behov.
+> KM1638 (technology) and KM1640 (geography/living conditions) have been covered and do not
+> need prioritising, but can be mentioned as context if needed.
 
-Svaret er presist og handlingsrettet – AI-en peker direkte på neste relevante steg.
+The response is precise and actionable — the AI points directly to the next relevant step.
 
 ---
 
-## Steg 3 – CASE-format via MCP
+## Step 3 – CASE format via MCP
 
-For systemer som kommuniserer via CASE-standarden kan AI-en bruke
-`grep_hent_cfitems("SAF01-04", "10")` i stedet. Dette returnerer nøyaktig samme
-Grep-data, men strukturert som CASE CFDocument med CFItems.
+For systems that communicate via the CASE standard, the AI can use
+`grep_hent_cfitems("SAF01-04", "10")` instead. This returns exactly the same
+Grep data, but structured as a CASE CFDocument with CFItems.
 
-**Utdrag fra responsen:**
+**Excerpt from the response:**
 
 ```json
 {
@@ -111,31 +111,31 @@ Grep-data, men strukturert som CASE CFDocument med CFItems.
 }
 ```
 
-Samme MCP-server – to formater. Grep-strukturen er uendret.
+Same MCP server — two formats. The Grep structure is unchanged.
 
 ---
 
-## Sammenligning
+## Comparison
 
-| | Steg 1 | Steg 2 | Steg 3 |
+| | Step 1 | Step 2 | Step 3 |
 |---|---|---|---|
-| **Verktøy** | `grep_hent_kompetansemaal` | `grep_hent_kompetansemaal` | `grep_hent_cfitems` |
-| **Grep-data** | Alle 19 KM for 10. trinn | Samme 19 KM | Samme 19 KM |
-| **Format** | Grep-format | Grep-format | CASE CFItem |
-| **Learner Context** | Nei | Ja (simulert) | Valgfritt |
-| **AI-svar** | Generisk liste | Tilpasset progresjon | Maskinlesbar standard |
-| **Verdi** | Korrekt, men lite handlingsrettet | Direkte nyttig for læreren | Interoperabelt med andre systemer |
+| **Tool** | `grep_hent_kompetansemaal` | `grep_hent_kompetansemaal` | `grep_hent_cfitems` |
+| **Grep data** | All 19 competence aims for grade 10 | Same 19 aims | Same 19 aims |
+| **Format** | Grep format | Grep format | CASE CFItem |
+| **Learner Context** | No | Yes (simulated) | Optional |
+| **AI response** | Generic list | Tailored to progress | Machine-readable standard |
+| **Value** | Correct, but not actionable | Directly useful for the teacher | Interoperable with other systems |
 
 ---
 
-## Hva er simulert?
+## What is simulated?
 
-**Learner Context:** I en reell LTI-integrasjon ville brukerprofilen blitt sendt automatisk
-via en **LTI Launch Message** når læreren åpner AI-verktøyet fra Canvas eller tilsvarende.
-I denne mockupen limes den inn manuelt i prompten for å illustrere konseptet.
-Dette er det «manglende leddet» som et ekte LTI-oppsett ville fylt inn automatisk.
+**Learner Context:** In a real LTI integration, the user profile would be sent automatically
+via an **LTI Launch Message** when the teacher opens the AI tool from Canvas or similar.
+In this mockup, it is pasted manually into the prompt to illustrate the concept.
+This is the "missing link" that a real LTI setup would fill in automatically at launch.
 
-**Grep-data:** Hentet live fra Greps triplestore via SPARQL – ikke mocket.
+**Grep data:** Fetched live from Grep's triplestore via SPARQL — not mocked.
 
-**CASE-format:** Generert i MCP-serveren ved hjelp av ontologi-mappingen i
-`ontologi/grep_case_mapping.ttl`. Ingen endringer i Grep.
+**CASE format:** Generated in the MCP server using the ontology mapping in
+`ontologi/grep_case_mapping.ttl`. No changes to Grep.

@@ -1,151 +1,134 @@
----
-tags: [plan, mockup, MCP, Grep, CASE, RAG]
-creation-date: 2026-04-09
-type: prosjekt
-status: ua
-topic: [Grep, CASE, MCP, RAG, interoperabilitet]
----
+# Project plan: Grep + MCP + Learner Context
 
-# Mockup-plan: Grep + MCP + Learner Context
-
-> Denne planen gjelder bygging av en teknisk demonstrasjon utenfor Obsidian-hvelvet.
-> Koden plasseres i en egen GitHub-repo (opprettes av Are).
-> Relatert: [[Taleplan]] | [[3-lags RAG-plan]]
+Technical demonstration of three layers working in combination.
 
 ---
 
-## Mål
+## Goals
 
-Demonstrere tre lag i kombinasjon for presentasjonen:
+Demonstrate three layers in combination:
 
-1. **Grep via SPARQL** – henter eksakte kompetansemål
-2. **MCP-server** – eksponerer Grep som et AI-verktøy (og kan oversette til CASE)
-3. **Learner Context (simulert)** – tilpasser svar til konkret elev/trinn/program
+1. **Grep via SPARQL** – retrieves exact competence aims
+2. **MCP server** – exposes Grep as an AI tool (and can translate to CASE)
+3. **Learner Context (simulated)** – tailors responses to a specific student/grade/subject
 
-> **Merk:** Learner Context er simulert i mockupen – brukerprofilen hardkodes i prompten, ikke hentet fra et reelt LTI-system. Dette kommuniseres tydelig i presentasjonen.
-
----
-
-## GraphDB-oppsett
-
-Før kode-utvikling starter, må følgende være på plass i GraphDB Workbench:
-
-1. **Opprett repo:** `grep-mcp-mockup`
-2. **Last inn data:** Grep JSON-LD-dump fra `https://data.udir.no/kl06/v201906/dump/jsonld`
-3. **Bygg ontologier:** Lag mappinger for CASE/CFItem-konvertering
-4. **Eksponér via SPARQL:** Gjør repoet tilgjengelig på `https://sparql-beta-data.udir.no/repositories/grep-mcp-mockup`
-
-> Dette håndteres av Are via Workbench – koden trenger bare å snakke mot det ferdige SPARQL-endpointet.
+> **Note:** Learner Context is simulated in the mockup — the user profile is hardcoded in the prompt, not retrieved from a real LTI system. This is made explicit in the demo.
 
 ---
 
-## Steg 1 – MCP-server for Grep
+## GraphDB setup
 
-### Hva den skal gjøre
-- Ta imot spørringer fra en AI-modell via MCP-protokollen
-- Oversette disse til SPARQL-spørringer mot Greps endepunkt
-- Returnere strukturerte kompetansemål-data som kontekst til AI-en
-- (Valgfritt) Eksponere data i CASE-format ved hjelp av ontologi-mappingen fra [[3-lags RAG-plan]]
+Before code development begins, the following must be in place in GraphDB Workbench:
 
-### Teknisk stack
-- **Python** (FastMCP eller mcp-python SDK)
-- **SPARQL** mot GraphDB-repo `grep-mcp-mockup` på `https://sparql-beta-data.udir.no/repositories/grep-mcp-mockup`
-- **MCP-verktøy som eksponeres:**
-  - `grep_hent_kompetansemaal(fagkode, trinn)` – henter KM for gitt fag og trinn
-  - `grep_hent_laereplan(fagkode)` – henter full læreplan
-  - `grep_sok(fritekst)` – fritekstsøk mot Grep
-  - (Valgfritt) `case_hent_cfitems(fagkode)` – returnerer data i CASE CFItem-format
+1. **Create repo:** `grep-mcp-mockup`
+2. **Load data:** Grep JSON-LD dump from `https://data.udir.no/kl06/v201906/dump/jsonld`
+3. **Build ontologies:** Create mappings for CASE/CFItem conversion
+4. **Expose via SPARQL:** Make the repo available at `https://sparql-beta-data.udir.no/repositories/grep-mcp-mockup`
 
-### Avhengigheter
-- [ ] GraphDB-repo `grep-mcp-mockup` opprettet i Workbench
-- [ ] Grep JSON-LD-dump lastet inn: `https://data.udir.no/kl06/v201906/dump/jsonld`
-- [ ] Ontologi-mappinger for CASE/CFItem laget og bakt inn i repoet
-- [ ] MCP Python SDK installert (`pip install mcp`)
-- [ ] Test at SPARQL-spørringer returnerer forventet data for SAF1-04
+> This is handled by Are via Workbench — the code only needs to talk to the finished SPARQL endpoint.
 
 ---
 
-## Steg 2 – Learner Context (simulert)
+## Step 1 – MCP server for Grep
 
-### Hva det skal gjøre
-- Legge til brukerprofil som kontekst i prompten til AI-en
-- Filtrere Grep-data basert på profilen (trinn, fag, allerede gjennomgåtte KM)
+### What it should do
+- Accept queries from an AI model via the MCP protocol
+- Translate these into SPARQL queries against Grep's endpoint
+- Return structured competence aim data as context to the AI
+- (Optional) Expose data in CASE format using the ontology mapping
 
-### Demo-scenario
-En lærer på 10. trinn spør: *«Hvilke kompetansemål i samfunnsfag er relevante for et prosjekt om demokrati og valg?»*
+### Technical stack
+- **Python** (FastMCP or mcp-python SDK)
+- **SPARQL** against GraphDB repo `grep-mcp-mockup` at `https://sparql-beta-data.udir.no/repositories/grep-mcp-mockup`
+- **MCP tools exposed:**
+  - `grep_hent_kompetansemaal(fagkode, trinn)` – fetches competence aims for a given subject and grade
+  - `grep_hent_laereplan(fagkode)` – fetches full curriculum
+  - `grep_sok_kompetansemaal(fritekst)` – full-text search against Grep
+  - (Optional) `grep_hent_cfitems(fagkode, trinn)` – returns data in CASE CFItem format
 
-**Simulert brukerprofil (hardkodet i prompt):**
+### Dependencies
+- [ ] GraphDB repo `grep-mcp-mockup` created in Workbench
+- [ ] Grep JSON-LD dump loaded: `https://data.udir.no/kl06/v201906/dump/jsonld`
+- [ ] Ontology mappings for CASE/CFItem created and loaded into the repo
+- [ ] MCP Python SDK installed (`pip install mcp`)
+- [ ] Verify that SPARQL queries return expected data for SAF01-04
+
+---
+
+## Step 2 – Learner Context (simulated)
+
+### What it should do
+- Add a user profile as context in the prompt to the AI
+- Filter Grep data based on the profile (grade, subject, already covered competence aims)
+
+### Demo scenario
+A teacher in grade 10 asks: *"Which competence aims in social studies are relevant for a project on democracy and elections?"*
+
+**Simulated user profile (hardcoded in prompt):**
 ```json
 {
   "rolle": "lærer",
   "trinn": "10",
-  "fag": "SAF1-04",
+  "fag": "SAF01-04",
   "gjennomgaatt": ["KM7815", "KM7816"]
 }
 ```
 
-**Forventet oppførsel:**
-- Uten Learner Context: AI lister alle 19 KM for 10. trinn
-- Med Learner Context: AI peker direkte på KM7817 og KM7819 som neste relevante steg
+**Expected behaviour:**
+- Without Learner Context: AI lists all 19 competence aims for grade 10
+- With Learner Context: AI points directly to KM7817 and KM7819 as the next relevant steps
 
 ---
 
-## Steg 3 – CASE-eksponering (valgfritt / avansert)
+## Step 3 – CASE exposure (optional / advanced)
 
-- Bruk ontologi-mappingen fra [[3-lags RAG-plan]] til å oversette Grep-output til CASE CFItem/CFDocument
-- Vis at samme MCP-server kan svare både «norsk Grep-format» og «CASE-format»
-- Demonstrerer interoperabilitet uten å endre Grep
+- Use the ontology mapping to translate Grep output to CASE CFItem/CFDocument
+- Show that the same MCP server can respond in both "Norwegian Grep format" and "CASE format"
+- Demonstrates interoperability without modifying Grep
 
 ---
 
-## Repo-struktur (forslag)
+## Repository structure
 
 ```
 grep-mcp-mockup/
 ├── README.md
 ├── server/
-│   ├── main.py          ← MCP-server
-│   ├── sparql.py        ← SPARQL-klient mot Grep
-│   └── case_adapter.py  ← (valgfritt) Grep→CASE-oversetter
+│   ├── main.py          ← MCP server
+│   ├── sparql.py        ← SPARQL client for Grep
+│   └── case_adapter.py  ← Grep→CASE translator
 ├── demo/
-│   ├── scenario.md      ← Beskrivelse av demo-scenariet
-│   └── learner_context.json ← Simulert brukerprofil
+│   ├── scenario.md      ← Demo scenario description
+│   └── learner_context.json ← Simulated user profile
 └── ontologi/
-    └── grep_case_mapping.ttl ← Turtle-fil med OWL/SKOS-mapping
+    └── grep_case_mapping.ttl ← Turtle file with OWL/SKOS mapping
 ```
 
 ---
 
-## Arbeidsrekkefølge
+## Work order
 
-1. Are oppretter GitHub-repo (`grep-mcp-mockup` eller tilsvarende)
-2. Sett opp Python-miljø og verifiser SPARQL-tilgang mot Grep
-3. Bygg MCP-server med `grep_hent_kompetansemaal`-verktøyet
-4. Test med Claude Desktop / Claude Code som MCP-klient
-5. Legg til Learner Context-simulering i demo-scenariet
-6. (Valgfritt) Bygg CASE-adapteren
-7. Dokumenter demo-scenariet i `demo/scenario.md`
+1. Are creates GitHub repo (`grep-mcp-mockup`)
+2. Set up Python environment and verify SPARQL access to Grep
+3. Build MCP server with `grep_hent_kompetansemaal` tool
+4. Test with Claude Code as MCP client
+5. Add Learner Context simulation to the demo scenario
+6. (Optional) Build CASE adapter
+7. Document demo scenario in `demo/scenario.md`
 
 ---
 
-## Beslutninger
+## Decisions
 
-| Spørsmål | Beslutning |
+| Question | Decision |
 |---|---|
-| MCP-klient | Ikke avklart – egen økt på dette |
-| Deployment | Deployet – GitHub-repo + Vercel e.l. |
-| Grep-data | Egen Grep-triplestore med ny ontologi og bro til CASE (ikke live Grep, ikke ren mock) |
-| Kode-lokasjon | `C:\Users\AMJ\git\grep-sandkasse\grep-case-rag` (eget VS Code-prosjekt) |
+| MCP client | Claude Code |
+| Deployment | GitHub repo + GraphDB at sparql-beta-data.udir.no |
+| Grep data | Dedicated Grep triplestore with new ontology and bridge to CASE (not live Grep, not pure mock) |
 
-### MCP-klient – åpent spørsmål
-Krever en dedikert gjennomgang. Alternativene som bør vurderes:
-- **Claude Desktop** – enklest å demonstrere, innebygd MCP-støtte
-- **Claude Code** – bra for teknisk publikum, terminal-basert
-- **Egen klient** – mest fleksibel, men mer å bygge
-
-### Triplestore-strategi
-Vi bygger en egen Grep-triplestore med:
-- Utvalgte data fra Grep (SAF1-04, relevante trinn)
-- Ny ontologi tilpasset dette formålet
-- Eksplisitt bro til CASE-ontologien (OWL/SKOS-mapping fra [[3-lags RAG-plan]])
-- Hostet slik at MCP-serveren kan nå den fra Vercel
+### Triplestore strategy
+We build a dedicated Grep triplestore with:
+- Selected data from Grep (SAF01-04, relevant grades)
+- New ontology tailored to this purpose
+- Explicit bridge to the CASE ontology (OWL/SKOS mapping)
+- Hosted so the MCP server can reach it

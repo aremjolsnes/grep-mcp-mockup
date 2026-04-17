@@ -1,51 +1,51 @@
-# Ontologi
+# Ontology
 
-Denne mappen inneholder ontologi-filer for grep-mcp-mockup. Filene lastes inn
-i GraphDB-repoet `grep-mcp-mockup` i rekkefølgen angitt nedenfor.
+This directory contains ontology files for grep-mcp-mockup. The files are loaded
+into the GraphDB repository `grep-mcp-mockup` in the order specified below.
 
-## Filer
+## Files
 
-| Fil | Innhold |
+| File | Contents |
 |---|---|
-| `grep_ontologi.ttl` | Normativ ontologi: klasser og egenskaper i Grep-modellen (LK20) |
-| `grep_case_mapping.ttl` | CASE-broaksiomer: kobling fra Grep til CASE/CFItem |
+| `grep_ontologi.ttl` | Normative ontology: classes and properties in the Grep model (LK20) |
+| `grep_case_mapping.ttl` | CASE bridge axioms: mappings from Grep to CASE/CFItem |
 
-## Graf-struktur i GraphDB
+## Graph structure in GraphDB
 
-| Graf | Innhold |
+| Graph | Contents |
 |---|---|
-| Default graph | Grep JSON-LD-dump (allerede lastet) |
+| Default graph | Grep JSON-LD dump (already loaded) |
 | `urn:graph:grep-ontologi` | `grep_ontologi.ttl` |
 | `urn:graph:grep-case-mapping` | `grep_case_mapping.ttl` |
 
-Grep-dataene ligger i default graph og røres ikke. Ontologi-filene lastes
-inn som named graphs slik at de kan oppdateres uavhengig av dataene.
-Eksisterende SPARQL-spørringer mot default graph fungerer uendret, siden
-GraphDB inkluderer alle named graphs i default graph som union.
+Grep data resides in the default graph and is not modified. Ontology files are loaded
+as named graphs so they can be updated independently of the data.
+Existing SPARQL queries against the default graph continue to work unchanged, since
+GraphDB includes all named graphs in the default graph as a union.
 
-## Laste-rekkefølge i GraphDB Workbench
+## Load order in GraphDB Workbench
 
-1. Last inn `grep_ontologi.ttl` med target graph `urn:graph:grep-ontologi`
-2. Last inn `grep_case_mapping.ttl` med target graph `urn:graph:grep-case-mapping`
+1. Load `grep_ontologi.ttl` with target graph `urn:graph:grep-ontologi`
+2. Load `grep_case_mapping.ttl` with target graph `urn:graph:grep-case-mapping`
 
-Grep JSON-LD-dump er allerede lastet i default graph – ingen endringer der.
+The Grep JSON-LD dump is already loaded in the default graph — no changes needed there.
 
-## Omfang
+## Scope
 
-Ontologien er bevisst avgrenset til klasser og egenskaper som er relevante
-for dette prosjektet:
+The ontology is intentionally scoped to the classes and properties relevant
+to this project:
 
-**Klasser:** `Kompetansemaal`, `kompetansemaal_lk20`, `Laereplan`,
+**Classes:** `Kompetansemaal`, `kompetansemaal_lk20`, `Laereplan`,
 `Kompetansemaalsett`, `Aarstrinn`
 
-**Egenskaper:** `kode`, `tittel`, `kortform`, `tilhoerer-laereplan`,
+**Properties:** `kode`, `tittel`, `kortform`, `tilhoerer-laereplan`,
 `tilhoerer-kompetansemaalsett`, `etter-aarstrinn`
 
-## CASE-standarden
+## The CASE standard
 
-CASE (Competencies & Academic Standards Exchange) er en standard fra
-1EdTech (tidligere IMS Global) for maskinlesbar utveksling av læreplaner
-og kompetansestandarder på tvers av systemer.
+CASE (Competencies & Academic Standards Exchange) is a standard from
+1EdTech (formerly IMS Global) for machine-readable exchange of curricula
+and competency standards across systems.
 
-- Spesifikasjon: https://www.imsglobal.org/activity/case
-- Namespace brukt her: `https://purl.imsglobal.org/spec/case/v1p0/vocab#`
+- Specification: https://www.imsglobal.org/activity/case
+- Namespace used here: `https://purl.imsglobal.org/spec/case/v1p0/vocab#`

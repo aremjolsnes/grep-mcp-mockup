@@ -2,9 +2,10 @@
 """
 MCP server exposing Grep curriculum data as tools.
 
-Exposes:
-  - hent_kompetansemaal: Fetch competence aims for a curriculum and grade
-  - sok_kompetansemaal:  Full-text search across competence aims
+Tools:
+  - grep_hent_kompetansemaal: Fetch competence aims for a curriculum and grade
+  - grep_sok_kompetansemaal:  Full-text search across competence aims
+  - grep_hent_cfitems:        Fetch competence aims in CASE CFItem format
 
 Run with:
     python server/main.py
@@ -24,19 +25,19 @@ mcp = FastMCP("grep-mcp")
 @mcp.tool()
 def grep_hent_kompetansemaal(laereplan_kode: str, trinn: str) -> list[dict]:
     """
-    Henter kompetansemål fra Grep for en gitt læreplan og trinn.
+    Fetches competence aims from Grep for a given curriculum and grade.
 
     Args:
-        laereplan_kode: Læreplan-kode, f.eks. 'SAF01-04'. Tom streng gir alle læreplaner.
-        trinn: Trinn, f.eks. '10' eller '7'. Tom streng gir alle trinn.
+        laereplan_kode: Curriculum code, e.g. 'SAF01-04'. Empty string returns all curricula.
+        trinn: Grade, e.g. '10' or '7'. Empty string returns all grades.
 
     Returns:
-        Liste med kompetansemål. Hvert element inneholder:
-        - kmCode: Kompetansemålkode (f.eks. KM7817)
-        - title: Kompetansemålstekst på fastsettingsspråket
-        - kmsTitle: Navn på kompetansemålsettet
-        - gradeLabel: Trinnbeskrivelse (f.eks. '10. trinn')
-        - currTitle: Læreplan-tittel
+        List of competence aims. Each element contains:
+        - kmCode: Competence aim code (e.g. KM7817)
+        - title: Competence aim text in the official language
+        - kmsTitle: Name of the competence aim set
+        - gradeLabel: Grade description (e.g. '10. trinn')
+        - currTitle: Curriculum title
     """
     raw = hent_kompetansemaal(laereplan_kode, trinn)
     return [
@@ -56,14 +57,14 @@ def grep_hent_kompetansemaal(laereplan_kode: str, trinn: str) -> list[dict]:
 @mcp.tool()
 def grep_sok_kompetansemaal(fritekst: str, maks_treff: int = 10) -> list[dict]:
     """
-    Søker etter kompetansemål i Grep med fritekst.
+    Searches for competence aims in Grep using free text.
 
     Args:
-        fritekst: Søketekst, f.eks. 'demokrati' eller 'kildekritikk'.
-        maks_treff: Maks antall treff (standard 10).
+        fritekst: Search text, e.g. 'demokrati' or 'kildekritikk'.
+        maks_treff: Maximum number of results (default 10).
 
     Returns:
-        Liste med matchende kompetansemål (km_code, title, description).
+        List of matching competence aims (km_code, title, description).
     """
     raw = sok_kompetansemaal(fritekst, maks_treff)
     return [
@@ -79,21 +80,21 @@ def grep_sok_kompetansemaal(fritekst: str, maks_treff: int = 10) -> list[dict]:
 @mcp.tool()
 def grep_hent_cfitems(laereplan_kode: str, trinn: str) -> dict:
     """
-    Henter kompetansemål fra Grep og returnerer dem i CASE CFItem-format.
+    Fetches competence aims from Grep and returns them in CASE CFItem format.
 
     Args:
-        laereplan_kode: Læreplan-kode, f.eks. 'SAF01-04'. Tom streng gir alle læreplaner.
-        trinn: Trinn, f.eks. '10' eller '7'. Tom streng gir alle trinn.
+        laereplan_kode: Curriculum code, e.g. 'SAF01-04'. Empty string returns all curricula.
+        trinn: Grade, e.g. '10' or '7'. Empty string returns all grades.
 
     Returns:
-        Et CASE CFDocument med tilhørende CFItem-er. Strukturen følger
-        1EdTech CASE-standarden (Competencies & Academic Standards Exchange).
-        Hvert CFItem inneholder:
-        - identifier: URI til kompetansemålet
-        - humanCodingScheme: Kompetansemålkode (f.eks. KM1638)
-        - fullStatement: Kompetansemålstekst
-        - educationLevel: Liste med trinnbeskrivelse
-        - CFDocumentURI: Referanse til læreplan (identifier + title)
+        A CASE CFDocument with associated CFItems. The structure follows
+        the 1EdTech CASE standard (Competencies & Academic Standards Exchange).
+        Each CFItem contains:
+        - identifier: URI of the competence aim
+        - humanCodingScheme: Competence aim code (e.g. KM1638)
+        - fullStatement: Competence aim text
+        - educationLevel: List with grade description
+        - CFDocumentURI: Reference to the curriculum (identifier + title)
     """
     raw = hent_kompetansemaal(laereplan_kode, trinn)
     cfitems = [to_cfitem(r) for r in raw]

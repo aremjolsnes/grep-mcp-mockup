@@ -1,23 +1,23 @@
-# Demo-prompter: Grep + MCP + Learner Context
+# Demo prompts: Grep + MCP + Learner Context
 
-Kjør disse én etter én i Claude Code-chatvinduet.
-
----
-
-## Steg 1 – Uten Learner Context
-
-```
-Hvilke kompetansemål i samfunnsfag er relevante for et prosjekt om demokrati og valg på 10. trinn?
-```
-
-*Forventet: AI bruker grep_hent_kompetansemaal("SAF01-04", "10"), lister relevante KM. Korrekt, men generisk.*
+Run these one by one in the Claude Code chat window.
 
 ---
 
-## Steg 2 – Med Learner Context
+## Step 1 – Without Learner Context
 
 ```
-Du er en pedagogisk assistent. Her er konteksten for denne klassen:
+Which competence aims in social studies are relevant for a project on democracy and elections in grade 10?
+```
+
+*Expected: AI uses grep_hent_kompetansemaal("SAF01-04", "10"), lists relevant competence aims. Correct, but generic.*
+
+---
+
+## Step 2 – With Learner Context
+
+```
+You are a pedagogical assistant. Here is the context for this class:
 
 {
   "rolle": "lærer",
@@ -26,36 +26,36 @@ Du er en pedagogisk assistent. Her er konteksten for denne klassen:
   "gjennomgaatt": ["KM1638", "KM1640", "KM1643"]
 }
 
-Hvilke kompetansemål i samfunnsfag er relevante for et prosjekt om demokrati og valg?
-Ta hensyn til at de allerede gjennomgåtte målene ikke trenger å prioriteres.
+Which competence aims in social studies are relevant for a project on democracy and elections?
+Take into account that the already covered aims do not need to be prioritised.
 ```
 
-*Forventet: AI bruker samme verktøy, men peker direkte på KM1648 og KM1652 som neste steg.*
+*Expected: AI uses the same tool, but points directly to KM1648 and KM1652 as the next steps.*
 
 ---
 
-## Steg 3 – CASE-format
+## Step 3 – CASE format
 
 ```
-Kan du hente de samme kompetansemålene i samfunnsfag for 10. trinn, men returnere dem i CASE-format?
+Can you fetch the same competence aims in social studies for grade 10, but return them in CASE format?
 ```
 
-*Forventet: AI bruker grep_hent_cfitems("SAF01-04", "10") og returnerer CFDocument + CFItems.*
+*Expected: AI uses grep_hent_cfitems("SAF01-04", "10") and returns CFDocument + CFItems.*
 
 ---
 
-## Steg 4 – Nevada-eksempelet (innspill fra internasjonal deltaker)
+## Step 4 – The Nevada example (input from international participant)
 
 ```
-Jeg jobber med læreplandata fra Nevada, USA. En av standardene deres er:
+I work with curriculum data from Nevada, USA. One of their standards is:
 
   SS.9-12.CE.1 – "Understand the structure and function of government,
   including the U.S. Constitution, separation of powers, and the role
   of citizens in a democratic society."
 
-Kan du finne norske kompetansemål i samfunnsfag for 10. trinn som dekker
-tilsvarende forståelse, og vise hvordan de ville sett ut i CASE-format
-slik at de to systemene kan sammenlignes?
+Can you find Norwegian competence aims in social studies for grade 10 that cover
+a similar understanding, and show how they would look in CASE format
+so the two systems can be compared?
 ```
 
-*Forventet: AI bruker grep_hent_cfitems("SAF01-04", "10"), identifiserer KM1652 (og KM1648) som match, viser CASE-struktur for begge. Poeng: samme ambisjon – to systemer – én bro.*
+*Expected: AI uses grep_hent_cfitems("SAF01-04", "10"), identifies KM1652 (and KM1648) as a match, shows CASE structure for both. Point: same ambition — two systems — one bridge.*

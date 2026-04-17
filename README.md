@@ -1,52 +1,52 @@
 # grep-mcp-mockup
 
-Teknisk demonstrasjon av tre lag i kombinasjon:
+Technical demonstration of three layers working in combination:
 
-1. **Grep via SPARQL** – henter eksakte kompetansemål fra Greps triplestore
-2. **MCP-server** – eksponerer Grep som et AI-verktøy
-3. **Learner Context (simulert)** – tilpasser svar til konkret elev/trinn/fag
+1. **Grep via SPARQL** – retrieves exact competence aims from Grep's triplestore
+2. **MCP server** – exposes Grep as an AI tool
+3. **Learner Context (simulated)** – tailors responses to a specific student/grade/subject
 
-## Prosjektstruktur
+## Project structure
 
 ```
 grep-mcp-mockup/
 ├── README.md
 ├── requirements.txt
-├── .mcp.json                   # MCP-konfigurasjon for Claude Code
+├── .mcp.json                   # MCP configuration for Claude Code
 ├── docs/
-│   ├── PLAN.md                 # Hovedplan for mockupen
-│   ├── 3-lags-RAG-plan.md      # Teknisk RAG-plan
-│   └── Taleplan.md             # Presentasjonsplan
+│   ├── PLAN.md                 # Main project plan
+│   ├── 3-lags-RAG-plan.md      # Technical RAG plan
 ├── server/
-│   ├── main.py                 # MCP-server (FastMCP)
-│   └── sparql.py               # SPARQL-klient mot GraphDB
-├── demo/                       # Demo-scenarioer (kommer)
-└── ontologi/                   # Ontologi-mappinger (kommer)
+│   ├── main.py                 # MCP server (FastMCP)
+│   ├── sparql.py               # SPARQL client for GraphDB
+│   └── case_adapter.py         # Grep → CASE format adapter
+├── demo/                       # Demo scenarios and prompts
+└── ontologi/                   # Ontology files and mappings
 ```
 
-## SPARQL-endepunkt
+## SPARQL endpoint
 
-Repoet bruker GraphDB-repoet `grep-mcp-mockup` eksponert via:
+The repo uses the GraphDB repository `grep-mcp-mockup` exposed via:
 
 ```
 https://sparql-beta-data.udir.no/repositories/grep-mcp-mockup
 ```
 
-## Oppsett
+## Setup
 
 ```bash
 python -m venv venv
 .\venv\Scripts\activate
 pip install -r requirements.txt
-python server/sparql.py   # Test SPARQL-tilkobling
-python server/main.py     # Start MCP-server
+python server/sparql.py   # Test SPARQL connectivity
+python server/main.py     # Start MCP server
 ```
 
-## Claude Code-oppsett
+## Claude Code setup
 
-Repoet inkluderer `.mcp.json` som registrerer MCP-serveren automatisk når du åpner prosjektet i Claude Code.
+The repo includes `.mcp.json` which registers the MCP server automatically when you open the project in Claude Code.
 
-I tillegg trenger du en lokal tillatelseskonfig som **ikke** er inkludert i repoet (siden den er maskinspesifikk). Opprett filen manuelt:
+You also need a local permissions config that is **not** included in the repo (it is machine-specific). Create it manually:
 
 ```bash
 mkdir -p .claude
@@ -65,32 +65,33 @@ mkdir -p .claude
 }
 ```
 
-Uten denne filen vil Claude Code be om tillatelse ved hvert verktøykall under demoen.
+Without this file, Claude Code will prompt for permission on every tool call during the demo.
 
-## MCP-verktøy
+## MCP tools
 
-Serveren eksponerer to verktøy:
+The server exposes three tools:
 
-| Verktøy | Beskrivelse |
+| Tool | Description |
 |---|---|
-| `grep_hent_kompetansemaal(laereplan_kode, trinn)` | Henter KM for gitt læreplan og trinn |
-| `grep_sok_kompetansemaal(fritekst, maks_treff)` | Fritekstsøk på tvers av alle KM |
+| `grep_hent_kompetansemaal(laereplan_kode, trinn)` | Fetch competence aims for a given curriculum and grade |
+| `grep_sok_kompetansemaal(fritekst, maks_treff)` | Full-text search across all competence aims |
+| `grep_hent_cfitems(laereplan_kode, trinn)` | Fetch competence aims in CASE CFItem format |
 
 ## Learner Context
 
-### Hva er Learner Context?
+### What is Learner Context?
 
-"Learner Context" er ikke én formell standardterm, men et konsept som springer ut av **1EdTech**-økosystemet – primært fra to standarder:
+"Learner Context" is not a single formal standard term, but a concept rooted in the **1EdTech** ecosystem — primarily from two standards:
 
-- **LTI (Learning Tools Interoperability):** Leverer kontekst om *hvem* og *hvor* – rolle, kurs og institusjon – via en Launch Message når en ekstern app åpnes fra f.eks. Canvas. Appen vet da om brukeren er `Learner` eller `Instructor` i den gitte situasjonen.
+- **LTI (Learning Tools Interoperability):** Delivers context about *who* and *where* — role, course, and institution — via a Launch Message when an external app is opened from e.g. Canvas. The app then knows whether the user is a `Learner` or `Instructor` in that situation.
 
-- **CASE (Competencies & Academic Standards Exchange):** Leverer kontekst om *hva* – hvilke kompetansemål som gjelder for eleven, trinnet og faget. Dette kobler elevens arbeid tett mot faglige krav.
+- **CASE (Competencies & Academic Standards Exchange):** Delivers context about *what* — which competence aims apply to the student, grade, and subject. This ties the student's work closely to curriculum requirements.
 
-Målet i 1EdTech-verdenen er **dataportabilitet**: elevens behov, preferanser og oppnådde kompetanse skal følge eleven på tvers av verktøy, i stedet for å være låst inne i ett enkelt system.
+The goal in the 1EdTech world is **data portability**: the student's needs, preferences, and achieved competencies should follow the student across tools, rather than being locked into a single system.
 
-### I denne mockupen
+### In this mockup
 
-Learner Context er **simulert** – brukerprofilen hardkodes i prompten i stedet for å hentes fra et reelt LTI-system. Dette er det "manglende leddet" som et ekte LTI-oppsett ville fylt inn automatisk ved oppstart.
+Learner Context is **simulated** — the user profile is hardcoded in the prompt rather than retrieved from a real LTI system. This is the "missing link" that a real LTI setup would fill in automatically at launch.
 
 ```json
 {
@@ -101,4 +102,4 @@ Learner Context er **simulert** – brukerprofilen hardkodes i prompten i stedet
 }
 ```
 
-Dette kommuniseres tydelig i presentasjonen.
+This is made explicit in the demo.

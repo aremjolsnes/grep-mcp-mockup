@@ -220,15 +220,15 @@ client = GrepSparqlClient()
 
 # Convenience functions for easy access
 def hent_kompetansemaal(laereplan_kode: str, trinn: str) -> List[Dict[str, Any]]:
-    """Hent kompetansemål for gitt læreplan-kode (f.eks. 'SAF01-04') og trinn"""
+    """Fetch competence aims for a given curriculum code (e.g. 'SAF01-04') and grade."""
     return client.get_competence_aims(laereplan_kode, trinn)
 
 def hent_laereplan(fagkode: str) -> Dict[str, Any]:
-    """Hent lærerplan for gitt fagkode"""
+    """Fetch curriculum for a given subject code."""
     return client.get_curriculum(fagkode)
 
 def sok_kompetansemaal(fritekst: str, limit: int = 10) -> List[Dict[str, Any]]:
-    """Søk etter kompetansemål med fritekst"""
+    """Search for competence aims using free text."""
     return client.search_competence_aims(fritekst, limit)
 
 if __name__ == "__main__":
